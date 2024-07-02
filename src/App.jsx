@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./routes/root";
+import ErrorPage from "./error-page";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,7 +11,9 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <div>Hello world!</div>,
+      element: <Root />,
+      errorElement: <ErrorPage />,
+      children: [{}],
     },
   ]);
 
