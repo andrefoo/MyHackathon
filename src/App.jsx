@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
+import VideoAnalyzer from "./routes/video";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,6 +15,11 @@ function App() {
       errorElement: <ErrorPage />,
       children: [{}],
     },
+    {
+      path: "/video",
+      element: <VideoAnalyzer />,
+      errorElement: <ErrorPage />,
+    }
   ]);
 
   return <RouterProvider router={router} />;
