@@ -16,7 +16,7 @@ html {
   height: 667px;
   width: 375px;
   border-radius: 25px;
-  overflow: scroll;
+  overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
 
@@ -27,6 +27,16 @@ html {
 .container {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.video {
+  scroll-snap-align: start;
+  height: 100vh;
+}
+
+.product-card {
+  scroll-snap-align: start;
+  height: 100vh;
 }
 
 .top-navbar {
