@@ -23,6 +23,7 @@ The proposed enhancements to TikTok Shop are designed to transform the shopping 
 - Run `npm install` to install the necessary dependencies
 - Run  `npm start` to start the development server
 - Open your browser and navigate to `http://localhost:3000` to access the app.
+- NOTE: if an error page appears, simply close it and the app will start working.
 
 ## Credits
 The TikTok UI Clone was created by [s-shemmee](https://github.com/s-shemmee).
