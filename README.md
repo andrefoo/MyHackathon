@@ -4,12 +4,15 @@
 # TikTok Product Swiping Discovery Feature
 
 ## Overview
-This repository contains our prototype that aims to personalize user shopping experiences through an innovative "For You Page" card. By integrating **swipeable shopping cards** akin to Tinder's interface, we aim to collect user preferences and **utilize machine learning to tailor product recommendations dynamically**.
+This repository contains our prototype aimed at personalizing user shopping experiences through an innovative "For You Page" card. By integrating swipeable shopping cards akin to Tinder's interface, we collect user preferences and utilize machine learning to dynamically tailor product recommendations.
+
 
 ## Features
-- **Swipeable Shopping Cards**: Implement swipeable card interfaces within the TikTok feed. These cards will appear intermittently between standard content cards (videos), and are linked to the product detail in TikTok Shop directly.
-- **Dynamic Content Generation**: The content of each card is generated based on the user’s previous interactions and preferences, providing a unique and personalized shopping experience.
-- **Image Recognition Algorithm**: Our image recognition algorithm can identify spotlight items in user videos (e.g., a red handbag). Based on the spotlight items detected, the shopping card will recommend similar items available on TikTok Shop.
+- **Swipeable Shopping Cards**: Implement swipeable card interfaces within the TikTok feed. These cards appear intermittently between standard content cards (videos) and link directly to the product detail in TikTok Shop.
+
+- **Dynamic Content Generation**: Each card's content is generated based on the user’s previous interactions and preferences, providing a unique and personalized shopping experience.
+- 
+- **Image Recognition Algorithm**: Our image recognition algorithm identifies spotlight items in user videos (e.g., a red handbag). Based on these detected spotlight items, the shopping card recommends similar items available on TikTok Shop.
 
 
 ## Technology Stack
@@ -17,6 +20,7 @@ This repository contains our prototype that aims to personalize user shopping ex
 
 ## Summary
 The proposed enhancements to TikTok Shop are designed to transform the shopping experience by integrating personalized, actionable shopping opportunities directly into the user's social feed. This approach is expected to increase engagement and conversion rates by leveraging sophisticated machine learning techniques to cater to individual preferences.
+
 
 ## Installation and Usage:
 - Clone the repository or download the source code.
