@@ -1,0 +1,6 @@
+torch
+opencv-python
+numpy
+requests
+beautifulsoup4
+pillow
