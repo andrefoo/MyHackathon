@@ -9,15 +9,17 @@ This repository contains our prototype aimed at personalizing user shopping expe
 
 ## Features
 - **Swipeable Shopping Cards**: Implement swipeable card interfaces within the TikTok feed. These cards appear intermittently between standard content cards (videos) and link directly to the product detail in TikTok Shop.
-
 - **Dynamic Content Generation**: Each card's content is generated based on the user’s previous interactions and preferences, providing a unique and personalized shopping experience.
-- 
 - **Image Recognition Algorithm**: Our image recognition algorithm identifies spotlight items in user videos (e.g., a red handbag). Based on these detected spotlight items, the shopping card recommends similar items available on TikTok Shop.
 
 
 ## Technology Stack
 - React.js
-
+- YOLOv5x
+- OpenCV
+- Google Custom Search API
+- Requests and BeautifulSoup
+  
 ## Summary
 The proposed enhancements to TikTok Shop are designed to transform the shopping experience by integrating personalized, actionable shopping opportunities directly into the user's social feed. This approach is expected to increase engagement and conversion rates by leveraging sophisticated machine learning techniques to cater to individual preferences.
 
