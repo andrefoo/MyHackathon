@@ -27,6 +27,7 @@ The proposed enhancements to TikTok Shop are designed to transform the shopping 
 - Run `npm install` to install the necessary dependencies
 - Run  `npm start` to start the development server
 - Open your browser and navigate to `http://localhost:3000` to access the app.
+- `pip install -r requirements.txt `
 - NOTE: if an error page appears, simply close it and the app will start working.
 
 ## Credits
