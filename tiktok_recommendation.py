@@ -6,11 +6,20 @@ from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+API_KEY = os.getenv('API_KEY')
+SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 
 # Load YOLOv5 model from torch.hub
-print("Loading YOLOv5 model...")
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)  # Using a smaller model for speed
-print("Model loaded.")
+def load_yolo_model():
+    print("Loading YOLOv5 model...")
+    model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
+    print("Model loaded.")
+    return model
 
 # Define a list of consumer items to prioritize (excluding 'person')
 consumer_items = [
@@ -26,12 +35,8 @@ consumer_items = [
     'scissors', 'teddy bear', 'hair drier', 'toothbrush'
 ]
 
-# Google Custom Search API credentials
-API_KEY = 'AIzaSyAGLJPsiwPOpv0QacWTsXW-Og7H3zQW-rc'
-SEARCH_ENGINE_ID = '22350c10cd0c04cda'
-
 # Function to get the main item and its color in the video
-def get_main_item(video_path, frame_skip=5):
+def get_main_item(video_path, model, frame_skip=5):
     print(f"Opening video file: {video_path}")
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -198,7 +203,8 @@ def save_images(products):
 
 # Main function to process the video, identify the main item, and search for the product
 def process_video(video_path):
-    main_item = get_main_item(video_path)
+    model = load_yolo_model()
+    main_item = get_main_item(video_path, model)
     if main_item:
         print(f"Main item detected: {main_item}")
         products = search_google(main_item)
@@ -213,5 +219,5 @@ def process_video(video_path):
         print("No items detected in the video.")
 
 # Example usage
-video_path = '/Users/yusutong/Downloads/tiktok_video.mp4'  # Replace with your actual path
+video_path = './src/videos/video1.mp4'  # Replace with your actual path
 process_video(video_path)
