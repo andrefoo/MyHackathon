@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlus, faCircleCheck, faHeart, faCommentDots, faBookmark, faShare } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCirclePlus,
+  faCircleCheck,
+  faHeart,
+  faCommentDots,
+  faBookmark,
+  faShare,
+} from '@fortawesome/free-solid-svg-icons';
 import './FooterRight.css';
 
 function FooterRight({ likes, comments, saves, shares, profilePic }) {
@@ -43,16 +50,30 @@ function FooterRight({ likes, comments, saves, shares, profilePic }) {
       <div className="sidebar-icon">
         {profilePic ? (
           // Displaying the user profile picture
-          <img src={profilePic} className='userprofile' alt='Profile' style={{ width: '45px', height: '45px', color: '#616161' }} />
+          <img
+            src={profilePic}
+            className="userprofile"
+            alt="Profile"
+            style={{ width: '45px', height: '45px', color: '#616161' }}
+          />
         ) : null}
         {/* The user add icon */}
-        <FontAwesomeIcon icon={userAddIcon} className='useradd' style={{ width: '15px', height: '15px', color: '#FF0000' }} onClick={handleUserAddClick}/>
+        <FontAwesomeIcon
+          icon={userAddIcon}
+          className="useradd"
+          style={{ width: '15px', height: '15px', color: '#FF0000' }}
+          onClick={handleUserAddClick}
+        />
       </div>
       <div className="sidebar-icon">
         {/* The heart icon for liking */}
         <FontAwesomeIcon
           icon={faHeart}
-          style={{ width: '35px', height: '35px', color: liked ? '#FF0000' : 'white' }}
+          style={{
+            width: '35px',
+            height: '35px',
+            color: liked ? '#FF0000' : 'white',
+          }}
           onClick={handleLikeClick}
         />
         {/* Displaying the formatted likes count */}
@@ -60,7 +81,10 @@ function FooterRight({ likes, comments, saves, shares, profilePic }) {
       </div>
       <div className="sidebar-icon">
         {/* The comment icon */}
-        <FontAwesomeIcon icon={faCommentDots} style={{ width: '35px', height: '35px', color: 'white' }} />
+        <FontAwesomeIcon
+          icon={faCommentDots}
+          style={{ width: '35px', height: '35px', color: 'white' }}
+        />
         {/* Displaying the number of comments */}
         <p>{comments}</p>
       </div>
@@ -85,13 +109,19 @@ function FooterRight({ likes, comments, saves, shares, profilePic }) {
       </div>
       <div className="sidebar-icon">
         {/* The share icon */}
-        <FontAwesomeIcon icon={faShare} style={{ width: '35px', height: '35px', color: 'white' }} />
+        <FontAwesomeIcon
+          icon={faShare}
+          style={{ width: '35px', height: '35px', color: 'white' }}
+        />
         {/* Displaying the number of shares */}
         <p>{shares}</p>
       </div>
       <div className="sidebar-icon record">
         {/* Displaying the record icon */}
-        <img src="https://static.thenounproject.com/png/934821-200.png" alt='Record Icon' />
+        <img
+          src="https://static.thenounproject.com/png/934821-200.png"
+          alt="Record Icon"
+        />
       </div>
     </div>
   );

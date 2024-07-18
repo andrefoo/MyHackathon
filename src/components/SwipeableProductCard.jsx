@@ -13,10 +13,16 @@ const SwipeableProductCard = ({ product, onSwipeLeft, onSwipeRight }) => {
   return (
     <div {...handlers} className="product-card">
       <div className="product-image-container">
-        <img className="product-image" src={product.productImage} alt={product.productName} />
+        <img
+          className="product-image"
+          src={product.productImage}
+          alt={product.productName}
+        />
       </div>
       <div className="product-info">
-        <h2>{product.productName} <span className="product-rating">4.3⭐</span></h2>
+        <h2>
+          {product.productName} <span className="product-rating">4.3⭐</span>
+        </h2>
         <p>{product.productDescription}</p>
         <p className="product-price">${product.productPrice}</p>
       </div>

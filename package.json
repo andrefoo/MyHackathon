@@ -1,5 +1,5 @@
 {
-  "name": "tiktok-ui-clone",
+  "name": "myhackathon",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,14 +17,23 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\""
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+"eslintConfig": {
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+},
   "browserslist": {
     "production": [
       ">0.2%",

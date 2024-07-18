@@ -4,20 +4,34 @@ import FooterRight from './FooterRight';
 import './VideoCard.css';
 
 const VideoCard = (props) => {
-  const { url, username, description, song, likes, shares, comments, saves, profilePic, setVideoRef, autoplay } = props;
+  const {
+    url,
+    username,
+    description,
+    song,
+    likes,
+    shares,
+    comments,
+    saves,
+    profilePic,
+    setVideoRef,
+    autoplay,
+  } = props;
   const videoRef = useRef(null);
 
   useEffect(() => {
     const handleUserInteraction = () => {
       if (autoplay && videoRef.current) {
-        videoRef.current.play().catch(error => {
+        videoRef.current.play().catch((error) => {
           console.error('Autoplay failed:', error);
         });
       }
     };
 
     document.addEventListener('click', handleUserInteraction, { once: true });
-    document.addEventListener('touchstart', handleUserInteraction, { once: true });
+    document.addEventListener('touchstart', handleUserInteraction, {
+      once: true,
+    });
 
     return () => {
       document.removeEventListener('click', handleUserInteraction);
@@ -32,7 +46,6 @@ const VideoCard = (props) => {
       videoRef.current.pause();
     }
   };
-
 
   return (
     <div className="video">
@@ -50,11 +63,21 @@ const VideoCard = (props) => {
       <div className="bottom-controls">
         <div className="footer-left">
           {/* The left part of the container */}
-          <FooterLeft username={username} description={description} song={song} />
+          <FooterLeft
+            username={username}
+            description={description}
+            song={song}
+          />
         </div>
         <div className="footer-right">
           {/* The right part of the container */}
-          <FooterRight likes={likes} shares={shares} comments={comments} saves={saves} profilePic={profilePic} />
+          <FooterRight
+            likes={likes}
+            shares={shares}
+            comments={comments}
+            saves={saves}
+            profilePic={profilePic}
+          />
         </div>
       </div>
     </div>

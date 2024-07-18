@@ -75,7 +75,6 @@ html {
   transform: translateX(50%);
 }
 
-
 .top-navbar .icon {
   font-size: 16px;
   color: #fff;
@@ -105,7 +104,7 @@ html {
   color: #d4d3d3;
 }
 
-.bottom-navbar .plus{
+.bottom-navbar .plus {
   background-color: #fff;
   color: #161616;
   padding: 5px 10px;
