@@ -7,6 +7,8 @@ from PIL import Image
 from io import BytesIO
 import os
 from dotenv import load_dotenv
+from collections import Counter
+from sklearn.cluster import KMeans
 
 # Load environment variables from .env file
 load_dotenv()
@@ -59,42 +61,36 @@ def get_main_item(video_path, model, frame_skip=5):
         
         # Object detection
         results = model(frame)
-        
-        if hasattr(results, 'names'):
-            labels = results.names
-        else:
-            labels = model.names  # Fallback to model's names if available
-        
-        print(f"Labels: {labels}")
-        
-        frame_height, frame_width = frame.shape[:2]
-        center_x, center_y = frame_width / 2, frame_height / 2
-        
-        for *xyxy, conf, cls in results.xyxy[0].tolist():
-            class_id = int(cls)
-            class_name = labels[class_id] if class_id < len(labels) else f"unknown_{class_id}"
-            print(f"Detected {class_name} with confidence {conf}")
+
+        # Process results if any detected objects
+        if len(results.xyxy[0]) > 0:
+            labels = results.names if hasattr(results, 'names') else model.names
             
-            # Only count items in the consumer_items list
-            if class_name in consumer_items:
-                x1, y1, x2, y2 = map(int, xyxy)
-                object_img = frame[y1:y2, x1:x2]
+            print(f"Labels: {labels}")
+            
+            frame_height, frame_width = frame.shape[:2]
+            center_x, center_y = frame_width / 2, frame_height / 2
+            
+            for *xyxy, conf, cls in results.xyxy[0].tolist():
+                class_id = int(cls)
+                class_name = labels[class_id] if class_id < len(labels) else f"unknown_{class_id}"
+                print(f"Detected {class_name} with confidence {conf}")
                 
-                # Calculate the distance from the center of the frame
-                object_center_x = (x1 + x2) / 2
-                object_center_y = (y1 + y2) / 2
-                distance_from_center = np.sqrt((object_center_x - center_x)**2 + (object_center_y - center_y)**2)
-                
-                # Normalize the distance and determine weight
-                max_distance = np.sqrt(center_x**2 + center_y**2)
-                weight = 1 - (distance_from_center / max_distance)
-                
-                # Detect the predominant color of the object
-                color = detect_color(object_img)
-                item_key = f"{class_name} ({color})"
-                
-                # Weighted counting
-                item_counts[item_key] = item_counts.get(item_key, 0) + weight
+                if class_name in consumer_items:
+                    x1, y1, x2, y2 = map(int, xyxy)
+                    object_img = frame[y1:y2, x1:x2]
+                    
+                    object_center_x = (x1 + x2) / 2
+                    object_center_y = (y1 + y2) / 2
+                    distance_from_center = np.sqrt((object_center_x - center_x)**2 + (object_center_y - center_y)**2)
+                    
+                    max_distance = np.sqrt(center_x**2 + center_y**2)
+                    weight = 1 - (distance_from_center / max_distance)
+                    
+                    color = detect_color(object_img)
+                    item_key = f"{class_name} ({color})"
+                    
+                    item_counts[item_key] = item_counts.get(item_key, 0) + weight
     
     cap.release()
     
@@ -102,33 +98,21 @@ def get_main_item(video_path, model, frame_skip=5):
         print("No items detected in the video.")
         return None
     
-    # Return the most frequent item detected
     main_item = max(item_counts, key=item_counts.get)
     return main_item
 
 # Function to detect the predominant color in an image
-def detect_color(image):
-    # Convert image to RGB
+def detect_color(image, k=1):
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    # Resize image to a small size for faster processing
-    resized_img = cv2.resize(image_rgb, (25, 25), interpolation=cv2.INTER_AREA)
-    # Convert image to a 2D array of pixels
+    resized_img = cv2.resize(image_rgb, (50, 50), interpolation=cv2.INTER_AREA)
     pixels = resized_img.reshape(-1, 3)
     
-    # Get the most frequent color
-    counts = {}
-    for pixel in pixels:
-        pixel_tuple = tuple(pixel)
-        counts[pixel_tuple] = counts.get(pixel_tuple, 0) + 1
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(pixels)
+    most_common = Counter(kmeans.labels_).most_common(1)
+    dominant_color = kmeans.cluster_centers_[most_common[0][0]]
     
-    # Get the color with the highest count
-    predominant_color = max(counts, key=counts.get)
-    
-    # Convert RGB to a color name
-    color_name = get_color_name(predominant_color)
-    
-    return color_name
-
+    return get_color_name(dominant_color)
 # Function to convert RGB color to a color name
 def get_color_name(rgb_color):
     # Simplified color naming function
@@ -154,27 +138,31 @@ def get_color_name(rgb_color):
 
 # Function to search Google for a product using the detected keyword
 def search_google(keyword):
-    # Modify the search query to increase chances of product links
-    search_query = f'{keyword} buy OR shop OR price OR Amazon OR eBay'
-    search_url = f'https://www.googleapis.com/customsearch/v1?q={search_query}&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
-    response = requests.get(search_url)
+    try:
+        search_query = f'{keyword} buy OR shop OR price OR Amazon OR eBay'
+        search_url = f'https://www.googleapis.com/customsearch/v1?q={search_query}&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
+        response = requests.get(search_url)
 
-    if response.status_code == 200:
-        search_results = response.json()
-        items = search_results.get('items', [])
-        products = [{'title': item['title'], 'link': item['link'], 'image': extract_image(item['link'])} for item in items]
-        return products
-    else:
-        print(f"Error: {response.status_code}")
+        if response.status_code == 200:
+            search_results = response.json()
+            items = search_results.get('items', [])
+            products = [{'title': item['title'], 'link': item['link'], 'image': extract_image(item['link'])} for item in items]
+            return products
+        else:
+            print(f"Error: {response.status_code}")
+            return None
+    except requests.exceptions.RequestException as e:
+        print(f"Request error: {e}")
+        return None
+    except Exception as e:
+        print(f"Unexpected error: {e}")
         return None
 
-# Function to extract image from the provided link
 def extract_image(url):
     try:
         response = requests.get(url)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
-            # Adjust the following selector based on the common structure for product images
             image_tag = soup.find('img')
             if image_tag and image_tag.get('src'):
                 return image_tag['src']
