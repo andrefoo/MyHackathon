@@ -120,19 +120,6 @@ def get_main_item(video_path, model, frame_skip=5):
         "other_items_summary": other_items_summary
     }
 
-def detect_color(image, k=1):
-    """Detect the predominant color in an image."""
-    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    resized_img = cv2.resize(image_rgb, (50, 50), interpolation=cv2.INTER_AREA)
-    pixels = resized_img.reshape(-1, 3)
-    
-    kmeans = KMeans(n_clusters=k)
-    kmeans.fit(pixels)
-    most_common = Counter(kmeans.labels_).most_common(1)
-    dominant_color = kmeans.cluster_centers_[most_common[0][0]]
-    
-    return get_color_name(dominant_color)
-
 def get_color_name(rgb_color):
     """Convert RGB color to a color name."""
     r, g, b = rgb_color
@@ -145,15 +132,34 @@ def get_color_name(rgb_color):
     elif r > 200 and g > 200 and b < 50:
         return "yellow"
     elif r > 200 and g < 50 and b > 200:
-        return "pink"
+        return "magenta"
     elif r < 50 and g > 200 and b > 200:
         return "cyan"
-    elif r > 200 and g > 200 and b > 200:
+    elif r > 150 and g > 150 and b > 150:
         return "white"
-    elif r < 50 and g < 50 and b < 50:
+    elif r < 100 and g < 100 and b < 100:
         return "black"
+    elif r > g and r > b:
+        return "orange"
+    elif g > r and g > b:
+        return "lime"
+    elif b > r and b > g:
+        return "violet"
     else:
         return "unknown"
+
+def detect_color(image, k=3):
+    """Detect the predominant color in an image."""
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    resized_img = cv2.resize(image_rgb, (50, 50), interpolation=cv2.INTER_AREA)
+    pixels = resized_img.reshape(-1, 3)
+    
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(pixels)
+    most_common = Counter(kmeans.labels_).most_common(1)
+    dominant_color = kmeans.cluster_centers_[most_common[0][0]]
+    
+    return get_color_name(dominant_color)
 
 def search_google(keyword):
     """Search Google for a product using the detected keyword."""
@@ -217,16 +223,19 @@ def process_video(video_path):
         main_item = detection_summary["main_item"]
         other_items_summary = detection_summary["other_items_summary"]
         
-        print(f"Main item detected: {main_item}")
-        print("Other items detected:")
-        for item, colors in other_items_summary.items():
-            print(f"{item}: {dict(colors)}")
+        print(f"\nMain item detected: {main_item}\n")
+        
+        sorted_other_items = sorted(other_items_summary.items(), key=lambda x: sum(x[1].values()), reverse=True)
+        print("Other items detected (sorted by weight):")
+        for item, colors in sorted_other_items:
+            colors_str = ', '.join([f"{color}: {weight:.2f}" for color, weight in colors.items()])
+            print(f"{item}: {colors_str}")
         
         products = search_google(main_item)
         if products:
-            print("Products found:")
+            print("\nProducts found:")
             for product in products:
-                print(f"Title: {product['title']}, Link: {product['link']}, Image: {product['image']}")
+                print(f"Title: {product['title']}\nLink: {product['link']}\nImage: {product['image']}\n")
             save_images(products)
         else:
             print("No products found.")
