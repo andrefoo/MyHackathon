@@ -16,6 +16,9 @@ load_dotenv()
 API_KEY = os.getenv('API_KEY')
 SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 
+if not API_KEY or not SEARCH_ENGINE_ID:
+    raise ValueError("API_KEY and SEARCH_ENGINE_ID must be set in the .env file.")
+
 # Load YOLOv5 model from torch.hub
 def load_yolo_model():
     print("Loading YOLOv5 model...")
