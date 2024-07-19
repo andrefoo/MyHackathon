@@ -7,7 +7,7 @@ from PIL import Image
 from io import BytesIO
 import os
 from dotenv import load_dotenv
-from collections import Counter
+from collections import Counter, defaultdict
 from sklearn.cluster import KMeans
 
 # Load environment variables from .env file
@@ -20,10 +20,13 @@ if not API_KEY or not SEARCH_ENGINE_ID:
     raise ValueError("API_KEY and SEARCH_ENGINE_ID must be set in the .env file.")
 
 # Load YOLOv5 model from torch.hub
+model = None
 def load_yolo_model():
-    print("Loading YOLOv5 model...")
-    model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
-    print("Model loaded.")
+    global model
+    if model is None:
+        print("Loading YOLOv5 model...")
+        model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
+        print("Model loaded.")
     return model
 
 # Define a list of consumer items to prioritize (excluding 'person')
@@ -48,7 +51,8 @@ def get_main_item(video_path, model, frame_skip=5):
         print("Error: Could not open video file.")
         return None
     
-    item_counts = {}
+    item_counts = defaultdict(int)
+    color_counts = defaultdict(Counter)
     frame_count = 0
     
     while cap.isOpened():
@@ -93,7 +97,8 @@ def get_main_item(video_path, model, frame_skip=5):
                     color = detect_color(object_img)
                     item_key = f"{class_name} ({color})"
                     
-                    item_counts[item_key] = item_counts.get(item_key, 0) + weight
+                    item_counts[class_name] += weight
+                    color_counts[class_name][color] += weight
     
     cap.release()
     
@@ -101,8 +106,19 @@ def get_main_item(video_path, model, frame_skip=5):
         print("No items detected in the video.")
         return None
     
+    # Determine the main item by highest weighted count
     main_item = max(item_counts, key=item_counts.get)
-    return main_item
+    
+    # Determine the most frequent color for the main item
+    main_color = color_counts[main_item].most_common(1)[0][0]
+    
+    # Create a summary of other detected items
+    other_items_summary = {item: dict(color_counts[item]) for item in item_counts if item != main_item}
+    
+    return {
+        "main_item": f"{main_item} ({main_color})",
+        "other_items_summary": other_items_summary
+    }
 
 # Function to detect the predominant color in an image
 def detect_color(image, k=1):
@@ -116,9 +132,9 @@ def detect_color(image, k=1):
     dominant_color = kmeans.cluster_centers_[most_common[0][0]]
     
     return get_color_name(dominant_color)
+
 # Function to convert RGB color to a color name
 def get_color_name(rgb_color):
-    # Simplified color naming function
     r, g, b = rgb_color
     if r > 200 and g < 50 and b < 50:
         return "red"
@@ -195,9 +211,16 @@ def save_images(products):
 # Main function to process the video, identify the main item, and search for the product
 def process_video(video_path):
     model = load_yolo_model()
-    main_item = get_main_item(video_path, model)
-    if main_item:
+    detection_summary = get_main_item(video_path, model)
+    if detection_summary:
+        main_item = detection_summary["main_item"]
+        other_items_summary = detection_summary["other_items_summary"]
+        
         print(f"Main item detected: {main_item}")
+        print("Other items detected:")
+        for item, colors in other_items_summary.items():
+            print(f"{item}: {dict(colors)}")
+        
         products = search_google(main_item)
         if products:
             print("Products found:")
@@ -211,4 +234,5 @@ def process_video(video_path):
 
 if __name__ == "__main__":
     video_path = './src/videos/video1.mp4'  # Replace with your actual path
+
     process_video(video_path)
