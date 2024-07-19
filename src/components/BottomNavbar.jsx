@@ -9,32 +9,26 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
-function BottomNavbar() {
+const navItems = [
+  { icon: faHouse, label: 'Home', isActive: true },
+  { icon: faUserFriends, label: 'Friends', isActive: false },
+  { icon: faPlus, label: 'Create', isActive: false, isPlus: true },
+  { icon: faInbox, label: 'Inbox', isActive: false, hasNotification: true },
+  { icon: faUser, label: 'Profile', isActive: false },
+];
+
+const BottomNavbar = () => {
   return (
     <div className="bottom-navbar">
-      <div className="nav-item">
-        <FontAwesomeIcon icon={faHouse} className="icon active" />
-        <span className="item-name active">Home</span>
-      </div>
-      <div className="nav-item">
-        <FontAwesomeIcon icon={faUserFriends} className="icon" />
-        <span className="item-name">Friends</span>
-      </div>
-      <div className="nav-item">
-        <FontAwesomeIcon icon={faPlus} className="icon plus" />
-        <span className="item-name">Create</span>
-      </div>
-      <div className="nav-item">
-        <FontAwesomeIcon icon={fa7} className="notification" />
-        <FontAwesomeIcon icon={faInbox} className="icon" />
-        <span className="item-name">Inbox</span>
-      </div>
-      <div className="nav-item">
-        <FontAwesomeIcon icon={faUser} className="icon" />
-        <span className="item-name">Profile</span>
-      </div>
+      {navItems.map(({ icon, label, isActive, isPlus, hasNotification }, index) => (
+        <div key={index} className={`nav-item ${isActive ? 'active' : ''}`}>
+          {hasNotification && <FontAwesomeIcon icon={fa7} className="notification" />}
+          <FontAwesomeIcon icon={icon} className={`icon ${isPlus ? 'plus' : ''}`} />
+          <span className={`item-name ${isActive ? 'active' : ''}`}>{label}</span>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default BottomNavbar;

@@ -14,10 +14,9 @@ export default function FooterLeft(props) {
           <p>{description}</p>
           <div className="ticker">
             <FontAwesomeIcon icon={faMusic} style={{ width: '30px' }} />
-            {/* eslint-disable-next-line jsx-a11y/no-distracting-elements */}
-            <marquee direction="left" scrollamount="2">
+            <div className="ticker-text">
               <span>{song}</span>
-            </marquee>
+            </div>
           </div>
         </div>
       </div>

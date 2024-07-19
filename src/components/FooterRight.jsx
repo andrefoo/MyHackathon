@@ -22,7 +22,6 @@ function FooterRight({ likes, comments, saves, shares, profilePic }) {
     }, 3000); // Change the delay time (in milliseconds) as needed
   };
 
-  // Function to convert likes count to a number
   const parseLikesCount = (count) => {
     if (typeof count === 'string') {
       if (count.endsWith('K')) {
@@ -33,7 +32,6 @@ function FooterRight({ likes, comments, saves, shares, profilePic }) {
     return count;
   };
 
-  // Function to format likes count
   const formatLikesCount = (count) => {
     if (count >= 10000) {
       return (count / 1000).toFixed(1) + 'K';
@@ -49,7 +47,6 @@ function FooterRight({ likes, comments, saves, shares, profilePic }) {
     <div className="footer-right">
       <div className="sidebar-icon">
         {profilePic ? (
-          // Displaying the user profile picture
           <img
             src={profilePic}
             className="userprofile"
@@ -57,16 +54,15 @@ function FooterRight({ likes, comments, saves, shares, profilePic }) {
             style={{ width: '45px', height: '45px', color: '#616161' }}
           />
         ) : null}
-        {/* The user add icon */}
         <FontAwesomeIcon
           icon={userAddIcon}
           className="useradd"
           style={{ width: '15px', height: '15px', color: '#FF0000' }}
           onClick={handleUserAddClick}
+          aria-label="Add user"
         />
       </div>
       <div className="sidebar-icon">
-        {/* The heart icon for liking */}
         <FontAwesomeIcon
           icon={faHeart}
           style={{
@@ -75,49 +71,36 @@ function FooterRight({ likes, comments, saves, shares, profilePic }) {
             color: liked ? '#FF0000' : 'white',
           }}
           onClick={handleLikeClick}
+          aria-label="Like"
         />
-        {/* Displaying the formatted likes count */}
         <p>{formatLikesCount(parseLikesCount(likes) + (liked ? 1 : 0))}</p>
       </div>
       <div className="sidebar-icon">
-        {/* The comment icon */}
         <FontAwesomeIcon
           icon={faCommentDots}
           style={{ width: '35px', height: '35px', color: 'white' }}
+          aria-label="Comment"
         />
-        {/* Displaying the number of comments */}
         <p>{comments}</p>
       </div>
       <div className="sidebar-icon">
-        {saved ? (
-          // Displaying the bookmark icon when saved
-          <FontAwesomeIcon
-            icon={faBookmark}
-            style={{ width: '35px', height: '35px', color: '#ffc107' }}
-            onClick={() => setSaved(false)}
-          />
-        ) : (
-          // Displaying the bookmark icon when not saved
-          <FontAwesomeIcon
-            icon={faBookmark}
-            style={{ width: '35px', height: '35px', color: 'white' }}
-            onClick={() => setSaved(true)}
-          />
-        )}
-        {/* Displaying the number of saves */}
+        <FontAwesomeIcon
+          icon={faBookmark}
+          style={{ width: '35px', height: '35px', color: saved ? '#ffc107' : 'white' }}
+          onClick={() => setSaved(!saved)}
+          aria-label="Save"
+        />
         <p>{saved ? saves + 1 : saves}</p>
       </div>
       <div className="sidebar-icon">
-        {/* The share icon */}
         <FontAwesomeIcon
           icon={faShare}
           style={{ width: '35px', height: '35px', color: 'white' }}
+          aria-label="Share"
         />
-        {/* Displaying the number of shares */}
         <p>{shares}</p>
       </div>
       <div className="sidebar-icon record">
-        {/* Displaying the record icon */}
         <img
           src="https://static.thenounproject.com/png/934821-200.png"
           alt="Record Icon"
