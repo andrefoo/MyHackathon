@@ -218,6 +218,6 @@ def process_video(video_path):
     else:
         print("No items detected in the video.")
 
-# Example usage
-video_path = './src/videos/video1.mp4'  # Replace with your actual path
-process_video(video_path)
+if __name__ == "__main__":
+    video_path = './src/videos/video1.mp4'  # Replace with your actual path
+    process_video(video_path)
