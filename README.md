@@ -1,9 +1,10 @@
-# TikTok '24 TechJam 
-# Team: MyHackathon
+# TikTok '24 TechJam
 
-# TikTok Product Swiping Discovery Feature
+**Team: MyHackathon**
 
-## Overview
+## TikTok Product Swiping Discovery Feature
+
+### Overview
 This repository contains our prototype aimed at personalizing user shopping experiences through an innovative "For You Page" card. By integrating swipeable shopping cards similar to Tinder's interface, we collect user preferences and utilize machine learning to dynamically tailor product recommendations.
 
 ## Features
