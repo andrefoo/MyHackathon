@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSwipeable } from 'react-swipeable';
 import './SwipeableProductCard.css';
 
@@ -35,6 +36,17 @@ const SwipeableProductCard = ({ product, onSwipeLeft, onSwipeRight }) => {
       </div>
     </div>
   );
+};
+
+SwipeableProductCard.propTypes = {
+  product: PropTypes.shape({
+    productName: PropTypes.string.isRequired,
+    productDescription: PropTypes.string.isRequired,
+    productPrice: PropTypes.number.isRequired,
+    productImage: PropTypes.string.isRequired,
+  }).isRequired,
+  onSwipeLeft: PropTypes.func.isRequired,
+  onSwipeRight: PropTypes.func.isRequired,
 };
 
 export default SwipeableProductCard;

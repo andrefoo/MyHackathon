@@ -28,14 +28,15 @@ const VideoCard = (props) => {
       }
     };
 
-    document.addEventListener('click', handleUserInteraction, { once: true });
-    document.addEventListener('touchstart', handleUserInteraction, {
-      once: true,
-    });
+    const interactionEvents = ['click', 'touchstart'];
+    interactionEvents.forEach((event) => 
+      document.addEventListener(event, handleUserInteraction, { once: true })
+    );
 
     return () => {
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
+      interactionEvents.forEach((event) => 
+        document.removeEventListener(event, handleUserInteraction)
+      );
     };
   }, [autoplay]);
 
@@ -49,7 +50,6 @@ const VideoCard = (props) => {
 
   return (
     <div className="video">
-      {/* The video element */}
       <video
         className="player"
         onClick={onVideoPress}
@@ -62,7 +62,6 @@ const VideoCard = (props) => {
       ></video>
       <div className="bottom-controls">
         <div className="footer-left">
-          {/* The left part of the container */}
           <FooterLeft
             username={username}
             description={description}
@@ -70,7 +69,6 @@ const VideoCard = (props) => {
           />
         </div>
         <div className="footer-right">
-          {/* The right part of the container */}
           <FooterRight
             likes={likes}
             shares={shares}
