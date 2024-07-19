@@ -2,6 +2,7 @@ import torch
 import cv2
 import numpy as np
 import requests
+import sys
 from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
@@ -241,8 +242,11 @@ def process_video(video_path):
             print("No products found.")
     else:
         print("No items detected in the video.")
+    sys.exit(0)
 
 if __name__ == "__main__":
-    video_path = './src/videos/video1.mp4'  # Replace with your actual path
+    video_path = './src/videos/video2.mp4'  # Replace with your actual path
 
     process_video(video_path)
+
+    
