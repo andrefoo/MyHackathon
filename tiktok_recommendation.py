@@ -19,7 +19,7 @@ SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 if not API_KEY or not SEARCH_ENGINE_ID:
     raise ValueError("API_KEY and SEARCH_ENGINE_ID must be set in the .env file.")
 
-# Load YOLOv5 model from torch.hub
+# Initialize the YOLOv5 model
 model = None
 def load_yolo_model():
     global model
@@ -29,7 +29,7 @@ def load_yolo_model():
         print("Model loaded.")
     return model
 
-# Define a list of consumer items to prioritize (excluding 'person')
+# List of consumer items to prioritize (excluding 'person')
 consumer_items = [
     'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat',
     'traffic light', 'fire hydrant', 'stop sign', 'parking meter', 'bench',
@@ -43,8 +43,8 @@ consumer_items = [
     'scissors', 'teddy bear', 'hair drier', 'toothbrush'
 ]
 
-# Function to get the main item and its color in the video
 def get_main_item(video_path, model, frame_skip=5):
+    """Get the main item and its color in the video."""
     print(f"Opening video file: {video_path}")
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -120,8 +120,8 @@ def get_main_item(video_path, model, frame_skip=5):
         "other_items_summary": other_items_summary
     }
 
-# Function to detect the predominant color in an image
 def detect_color(image, k=1):
+    """Detect the predominant color in an image."""
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     resized_img = cv2.resize(image_rgb, (50, 50), interpolation=cv2.INTER_AREA)
     pixels = resized_img.reshape(-1, 3)
@@ -133,8 +133,8 @@ def detect_color(image, k=1):
     
     return get_color_name(dominant_color)
 
-# Function to convert RGB color to a color name
 def get_color_name(rgb_color):
+    """Convert RGB color to a color name."""
     r, g, b = rgb_color
     if r > 200 and g < 50 and b < 50:
         return "red"
@@ -155,8 +155,8 @@ def get_color_name(rgb_color):
     else:
         return "unknown"
 
-# Function to search Google for a product using the detected keyword
 def search_google(keyword):
+    """Search Google for a product using the detected keyword."""
     try:
         search_query = f'{keyword} buy OR shop OR price OR Amazon OR eBay'
         search_url = f'https://www.googleapis.com/customsearch/v1?q={search_query}&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
@@ -178,6 +178,7 @@ def search_google(keyword):
         return None
 
 def extract_image(url):
+    """Extract the image URL from a given webpage URL."""
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -190,8 +191,8 @@ def extract_image(url):
         print(f"Error extracting image from {url}: {e}")
         return None
 
-# Function to save images locally
 def save_images(products):
+    """Save product images locally."""
     if not os.path.exists('product_images'):
         os.makedirs('product_images')
     
@@ -208,8 +209,8 @@ def save_images(products):
             except Exception as e:
                 print(f"Error saving image from {image_url}: {e}")
 
-# Main function to process the video, identify the main item, and search for the product
 def process_video(video_path):
+    """Process the video, identify the main item, and search for the product."""
     model = load_yolo_model()
     detection_summary = get_main_item(video_path, model)
     if detection_summary:
