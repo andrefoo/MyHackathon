@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 from collections import Counter, defaultdict
 from sklearn.cluster import KMeans
 import yaml
-import requests  # Added import
+import requests
 
 # Load environment variables from .env file
 load_dotenv()
@@ -44,6 +44,11 @@ def load_yolo_model():
 
 # List of consumer items to prioritize (excluding 'person')
 consumer_items = config['consumer_items']
+
+all_consumer_items = []
+for category in consumer_items.values():
+    all_consumer_items.extend(category)
+
 
 def get_main_item(video_path, model, frame_skip=5):
     """Get the main item and its color in the video."""
@@ -83,7 +88,7 @@ def get_main_item(video_path, model, frame_skip=5):
                 class_name = labels[class_id] if class_id < len(labels) else f"unknown_{class_id}"
                 logging.info(f"Detected {class_name} with confidence {conf}")
                 
-                if class_name in consumer_items:
+                if class_name in all_consumer_items:
                     x1, y1, x2, y2 = map(int, xyxy)
                     object_img = frame[y1:y2, x1:x2]
                     
@@ -123,43 +128,56 @@ def get_main_item(video_path, model, frame_skip=5):
 def get_color_name(rgb_color):
     """Convert RGB color to a color name."""
     r, g, b = rgb_color
-    if r > 200 and g < 50 and b < 50:
-        return "red"
-    elif r < 50 and g > 200 and b < 50:
-        return "green"
-    elif r < 50 and g < 50 and b > 200:
-        return "blue"
-    elif r > 200 and g > 200 and b < 50:
-        return "yellow"
-    elif r > 200 and g < 50 and b > 200:
-        return "magenta"
-    elif r < 50 and g > 200 and b > 200:
-        return "cyan"
-    elif r > 150 and g > 150 and b > 150:
-        return "white"
-    elif r < 100 and g < 100 and b < 100:
-        return "black"
-    elif r > g and r > b:
-        return "orange"
-    elif g > r and g > b:
-        return "lime"
-    elif b > r and b > g:
-        return "violet"
-    else:
-        return "unknown"
+    color_thresholds = {
+        "red": (200, 50, 50),
+        "green": (50, 200, 50),
+        "blue": (50, 50, 200),
+        "yellow": (200, 200, 50),
+        "magenta": (200, 50, 200),
+        "cyan": (50, 200, 200),
+        "white": (150, 150, 150),
+        "black": (100, 100, 100),
+        "orange": (200, 100, 50),
+        "lime": (100, 200, 50),
+        "violet": (150, 50, 150),
+    }
+
+    color_diffs = {color: np.linalg.norm(np.array(rgb_color) - np.array(threshold)) for color, threshold in color_thresholds.items()}
+    closest_color = min(color_diffs, key=color_diffs.get)
+    
+    return closest_color
 
 def detect_color(image, k=3):
     """Detect the predominant color in an image."""
-    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    resized_img = cv2.resize(image_rgb, (50, 50), interpolation=cv2.INTER_AREA)
-    pixels = resized_img.reshape(-1, 3)
-    
-    kmeans = KMeans(n_clusters=k)
-    kmeans.fit(pixels)
-    most_common = Counter(kmeans.labels_).most_common(1)
-    dominant_color = kmeans.cluster_centers_[most_common[0][0]]
-    
-    return get_color_name(dominant_color)
+    try:
+        # Convert the image from BGR to RGB
+        image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        
+        # Resize the image to speed up processing while maintaining aspect ratio
+        height, width, _ = image_rgb.shape
+        aspect_ratio = width / height
+        new_height = 50
+        new_width = int(aspect_ratio * new_height)
+        resized_img = cv2.resize(image_rgb, (new_width, new_height), interpolation=cv2.INTER_AREA)
+        
+        # Flatten the image pixels
+        pixels = resized_img.reshape(-1, 3)
+        
+        # Initialize and fit KMeans
+        kmeans = KMeans(n_clusters=k, random_state=42)
+        kmeans.fit(pixels)
+        
+        # Find the most common cluster
+        most_common = Counter(kmeans.labels_).most_common(1)
+        dominant_color = kmeans.cluster_centers_[most_common[0][0]]
+        
+        # Get the color name
+        color_name = get_color_name(dominant_color)
+        
+        return color_name
+    except Exception as e:
+        logging.error(f"Error detecting color: {e}")
+        return "unknown"
 
 async def fetch(session, url):
     """Fetch the content from a URL."""
