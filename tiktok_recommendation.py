@@ -1,7 +1,9 @@
 import torch
 import cv2
 import numpy as np
-import requests
+import aiohttp
+import asyncio
+import logging
 import sys
 from bs4 import BeautifulSoup
 from PIL import Image
@@ -10,6 +12,8 @@ import os
 from dotenv import load_dotenv
 from collections import Counter, defaultdict
 from sklearn.cluster import KMeans
+import yaml
+import requests  # Added import
 
 # Load environment variables from .env file
 load_dotenv()
@@ -20,36 +24,33 @@ SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 if not API_KEY or not SEARCH_ENGINE_ID:
     raise ValueError("API_KEY and SEARCH_ENGINE_ID must be set in the .env file.")
 
+# Load configuration
+with open('config.yaml', 'r') as file:
+    config = yaml.safe_load(file)
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 # Initialize the YOLOv5 model
 model = None
+
 def load_yolo_model():
     global model
     if model is None:
-        print("Loading YOLOv5 model...")
+        logging.info("Loading YOLOv5 model...")
         model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
-        print("Model loaded.")
+        logging.info("Model loaded.")
     return model
 
 # List of consumer items to prioritize (excluding 'person')
-consumer_items = [
-    'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat',
-    'traffic light', 'fire hydrant', 'stop sign', 'parking meter', 'bench',
-    'bird', 'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe',
-    'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard',
-    'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
-    'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple', 'sandwich',
-    'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
-    'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard',
-    'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase',
-    'scissors', 'teddy bear', 'hair drier', 'toothbrush'
-]
+consumer_items = config['consumer_items']
 
 def get_main_item(video_path, model, frame_skip=5):
     """Get the main item and its color in the video."""
-    print(f"Opening video file: {video_path}")
+    logging.info(f"Opening video file: {video_path}")
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        print("Error: Could not open video file.")
+        logging.error("Could not open video file.")
         return None
     
     item_counts = defaultdict(int)
@@ -65,7 +66,7 @@ def get_main_item(video_path, model, frame_skip=5):
         if frame_count % frame_skip != 0:
             continue  # Skip frames
         
-        print(f"Processing frame {frame_count}...")
+        logging.info(f"Processing frame {frame_count}...")
         
         # Object detection
         results = model(frame)
@@ -74,15 +75,13 @@ def get_main_item(video_path, model, frame_skip=5):
         if len(results.xyxy[0]) > 0:
             labels = results.names if hasattr(results, 'names') else model.names
             
-            print(f"Labels: {labels}")
-            
             frame_height, frame_width = frame.shape[:2]
             center_x, center_y = frame_width / 2, frame_height / 2
             
             for *xyxy, conf, cls in results.xyxy[0].tolist():
                 class_id = int(cls)
                 class_name = labels[class_id] if class_id < len(labels) else f"unknown_{class_id}"
-                print(f"Detected {class_name} with confidence {conf}")
+                logging.info(f"Detected {class_name} with confidence {conf}")
                 
                 if class_name in consumer_items:
                     x1, y1, x2, y2 = map(int, xyxy)
@@ -104,7 +103,7 @@ def get_main_item(video_path, model, frame_skip=5):
     cap.release()
     
     if not item_counts:
-        print("No items detected in the video.")
+        logging.info("No items detected in the video.")
         return None
     
     # Determine the main item by highest weighted count
@@ -162,40 +161,41 @@ def detect_color(image, k=3):
     
     return get_color_name(dominant_color)
 
-def search_google(keyword):
-    """Search Google for a product using the detected keyword."""
+async def fetch(session, url):
+    """Fetch the content from a URL."""
     try:
-        search_query = f'{keyword} buy OR shop OR price OR Amazon OR eBay'
-        search_url = f'https://www.googleapis.com/customsearch/v1?q={search_query}&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
-        response = requests.get(search_url)
-
-        if response.status_code == 200:
-            search_results = response.json()
-            items = search_results.get('items', [])
-            products = [{'title': item['title'], 'link': item['link'], 'image': extract_image(item['link'])} for item in items]
-            return products
-        else:
-            print(f"Error: {response.status_code}")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"Request error: {e}")
-        return None
+        async with session.get(url) as response:
+            return await response.json()
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        logging.error(f"Error fetching {url}: {e}")
         return None
 
-def extract_image(url):
+async def search_google(keyword):
+    """Search Google for a product using the detected keyword."""
+    search_query = f'{keyword} buy OR shop OR price OR Amazon OR eBay'
+    search_url = f'https://www.googleapis.com/customsearch/v1?q={search_query}&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
+    
+    async with aiohttp.ClientSession() as session:
+        response_json = await fetch(session, search_url)
+        if response_json:
+            items = response_json.get('items', [])
+            products = [{'title': item['title'], 'link': item['link'], 'image': await extract_image(item['link'])} for item in items]
+            return products
+        return None
+
+async def extract_image(url):
     """Extract the image URL from a given webpage URL."""
     try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            image_tag = soup.find('img')
-            if image_tag and image_tag.get('src'):
-                return image_tag['src']
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                if response.status == 200:
+                    soup = BeautifulSoup(await response.text(), 'html.parser')
+                    image_tag = soup.find('img')
+                    if image_tag and image_tag.get('src'):
+                        return image_tag['src']
         return None
     except Exception as e:
-        print(f"Error extracting image from {url}: {e}")
+        logging.error(f"Error extracting image from {url}: {e}")
         return None
 
 def save_images(products):
@@ -208,15 +208,15 @@ def save_images(products):
         if image_url:
             try:
                 response = requests.get(image_url)
-                if response.status_code == 200:
+                if response.status == 200:
                     img = Image.open(BytesIO(response.content))
                     img_path = os.path.join('product_images', f"product_{i+1}.jpg")
                     img.save(img_path)
-                    print(f"Image saved to {img_path}")
+                    logging.info(f"Image saved to {img_path}")
             except Exception as e:
-                print(f"Error saving image from {image_url}: {e}")
+                logging.error(f"Error saving image from {image_url}: {e}")
 
-def process_video(video_path):
+async def process_video(video_path):
     """Process the video, identify the main item, and search for the product."""
     model = load_yolo_model()
     detection_summary = get_main_item(video_path, model)
@@ -224,29 +224,29 @@ def process_video(video_path):
         main_item = detection_summary["main_item"]
         other_items_summary = detection_summary["other_items_summary"]
         
-        print(f"\nMain item detected: {main_item}\n")
+        logging.info(f"\nMain item detected: {main_item}\n")
         
         sorted_other_items = sorted(other_items_summary.items(), key=lambda x: sum(x[1].values()), reverse=True)
-        print("Other items detected (sorted by weight):")
+        logging.info("Other items detected (sorted by weight):")
         for item, colors in sorted_other_items:
             colors_str = ', '.join([f"{color}: {weight:.2f}" for color, weight in colors.items()])
-            print(f"{item}: {colors_str}")
+            logging.info(f"{item}: {colors_str}")
         
-        products = search_google(main_item)
+        products = await search_google(main_item)
         if products:
-            print("\nProducts found:")
+            logging.info("\nProducts found:")
             for product in products:
-                print(f"Title: {product['title']}\nLink: {product['link']}\nImage: {product['image']}\n")
+                logging.info(f"Title: {product['title']}\nLink: {product['link']}\nImage: {product['image']}\n")
             save_images(products)
         else:
-            print("No products found.")
+            logging.info("No products found.")
     else:
-        print("No items detected in the video.")
+        logging.info("No items detected in the video.")
     sys.exit(0)
 
 if __name__ == "__main__":
-    video_path = './src/videos/video2.mp4'  # Replace with your actual path
+    video_path = './src/videos/video1.mp4'  # Replace with your actual path
 
-    process_video(video_path)
+    logging.info("Processing video...")
 
-    
+    asyncio.run(process_video(video_path))
