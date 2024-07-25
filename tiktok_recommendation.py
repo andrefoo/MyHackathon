@@ -49,7 +49,6 @@ all_consumer_items = []
 for category in consumer_items.values():
     all_consumer_items.extend(category)
 
-
 def get_main_item(video_path, model, frame_skip=5):
     """Get the main item and its color in the video."""
     logging.info(f"Opening video file: {video_path}")
@@ -58,7 +57,8 @@ def get_main_item(video_path, model, frame_skip=5):
         logging.error("Could not open video file.")
         return None
     
-    item_counts = defaultdict(int)
+    person_coordinates = []
+    object_distances = defaultdict(list)
     color_counts = defaultdict(Counter)
     frame_count = 0
     
@@ -80,45 +80,49 @@ def get_main_item(video_path, model, frame_skip=5):
         if len(results.xyxy[0]) > 0:
             labels = results.names if hasattr(results, 'names') else model.names
             
-            frame_height, frame_width = frame.shape[:2]
-            center_x, center_y = frame_width / 2, frame_height / 2
-            
             for *xyxy, conf, cls in results.xyxy[0].tolist():
                 class_id = int(cls)
                 class_name = labels[class_id] if class_id < len(labels) else f"unknown_{class_id}"
                 logging.info(f"Detected {class_name} with confidence {conf}")
                 
-                if class_name in all_consumer_items:
-                    x1, y1, x2, y2 = map(int, xyxy)
+                x1, y1, x2, y2 = map(int, xyxy)
+                object_center_x = (x1 + x2) / 2
+                object_center_y = (y1 + y2) / 2
+                
+                if class_name == 'person':
+                    person_coordinates.append((object_center_x, object_center_y))
+                elif class_name in all_consumer_items:
                     object_img = frame[y1:y2, x1:x2]
-                    
-                    object_center_x = (x1 + x2) / 2
-                    object_center_y = (y1 + y2) / 2
-                    distance_from_center = np.sqrt((object_center_x - center_x)**2 + (object_center_y - center_y)**2)
-                    
-                    max_distance = np.sqrt(center_x**2 + center_y**2)
-                    weight = 1 - (distance_from_center / max_distance)
-                    
                     color = detect_color(object_img)
                     item_key = f"{class_name} ({color})"
-                    
-                    item_counts[class_name] += weight
-                    color_counts[class_name][color] += weight
+                    color_counts[class_name][color] += 1
+                    object_distances[class_name].append((object_center_x, object_center_y))
     
     cap.release()
     
-    if not item_counts:
-        logging.info("No items detected in the video.")
+    if not person_coordinates or not object_distances:
+        logging.info("No persons or objects detected in the video.")
         return None
     
-    # Determine the main item by highest weighted count
-    main_item = max(item_counts, key=item_counts.get)
+    # Calculate the minimum distance between each object and the nearest person
+    min_distances = {}
+    for class_name, coords in object_distances.items():
+        min_distance = float('inf')
+        for obj_x, obj_y in coords:
+            for person_x, person_y in person_coordinates:
+                distance = np.sqrt((obj_x - person_x)**2 + (obj_y - person_y)**2)
+                if distance < min_distance:
+                    min_distance = distance
+        min_distances[class_name] = min_distance
+    
+    # Determine the main item by the smallest minimum distance to a person
+    main_item = min(min_distances, key=min_distances.get)
     
     # Determine the most frequent color for the main item
     main_color = color_counts[main_item].most_common(1)[0][0]
     
     # Create a summary of other detected items
-    other_items_summary = {item: dict(color_counts[item]) for item in item_counts if item != main_item}
+    other_items_summary = {item: dict(color_counts[item]) for item in color_counts if item != main_item}
     
     return {
         "main_item": f"{main_item} ({main_color})",
