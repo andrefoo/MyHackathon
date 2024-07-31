@@ -2,6 +2,7 @@ import torch
 import cv2
 import numpy as np
 import aiohttp
+import json
 import asyncio
 import logging
 import sys
@@ -14,10 +15,15 @@ from collections import Counter, defaultdict
 from sklearn.cluster import KMeans
 import yaml
 import requests
+import base64
+
 # Load environment variables from .env file
 load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
+IMG_API_KEY = os.getenv('IMG_API_KEY')
+SERPAPI_API_KEY = os.getenv('SERPAPI_API_KEY')
+
 SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 
 if not API_KEY or not SEARCH_ENGINE_ID:
@@ -61,6 +67,7 @@ def get_main_item(video_path, model, frame_skip=5):
     color_counts = defaultdict(Counter)
     frame_count = 0
     main_item_frame = None
+    main_item_coordinates = None
     
     while cap.isOpened():
         ret, frame = cap.read()
@@ -101,6 +108,7 @@ def get_main_item(video_path, model, frame_skip=5):
                     # Save the frame with the detected main item
                     if main_item_frame is None:
                         main_item_frame = frame.copy()
+                        main_item_coordinates = (x1, y1, x2, y2)
                         cv2.rectangle(main_item_frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
                         cv2.putText(main_item_frame, item_key, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
     
@@ -133,7 +141,8 @@ def get_main_item(video_path, model, frame_skip=5):
     return {
         "main_item": f"{main_item} ({main_color})",
         "other_items_summary": other_items_summary,
-        "main_item_frame": main_item_frame
+        "main_item_frame": main_item_frame,
+        "main_item_coordinates": main_item_coordinates
     }
 
 def get_color_name(rgb_color):
@@ -253,7 +262,8 @@ async def process_video(video_path):
         main_item = detection_summary["main_item"]
         other_items_summary = detection_summary["other_items_summary"]
         main_item_frame = detection_summary["main_item_frame"]
-        
+        main_item_coordinates = detection_summary["main_item_coordinates"]
+
         logging.info(f"\nMain item detected: {main_item}\n")
         
         sorted_other_items = sorted(other_items_summary.items(), key=lambda x: sum(x[1].values()), reverse=True)
@@ -268,24 +278,81 @@ async def process_video(video_path):
             cv2.imwrite(frame_path, main_item_frame)
             logging.info(f"Main item frame saved to {frame_path}")
         
+                # Save the cropped main item
+        if main_item_coordinates:
+            x1, y1, x2, y2 = main_item_coordinates
+            cropped_main_item = main_item_frame[y1:y2, x1:x2]
+            cropped_path = './cropped_main_item.jpg'
+            cv2.imwrite(cropped_path, cropped_main_item)
+            logging.info(f"Cropped main item saved to {cropped_path}")
+        
         # products = await search_google(main_item)
         # if products:
         #     logging.info("\nProducts found:")
         #     for product in products:
         #         logging.info(f"Title: {product['title']}\nLink: {product['link']}\nImage: {product['image']}\n")
-        #     save_images(products)
+        #     save_images(products)f
         # else:
         #     logging.info("No products found.")
     else:
         logging.info("No items detected in the video.")
 
-if __name__ == "__main__":
-    video_path = './src/videos/video1.mp4'  # Replace with your actual path
+def upload_image_to_imgbb(image_path, api_key):
+    url = "https://api.imgbb.com/1/upload"
+    with open(image_path, 'rb') as image_file:
+        encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+        payload = {
+            'key': api_key,
+            'image': encoded_image
+        }
+        response = requests.post(url, data=payload)
+    
+    if response.status_code == 200:
+        return response.json()['data']['url']
+    else:
+        print("Failed to upload image", response.text)
+        return None
+    
+def google_lens_search(image_url, api_key):
+    url = "https://serpapi.com/search"
+    params = {
+        "engine": "google_lens",
+        "url": image_url,
+        "api_key": api_key
+    }
 
-    logging.info("Processing video...")
+    response = requests.get(url, params=params)
+    
+    if response.status_code == 200:
+        return response.json().get('visual_matches', [])
+    else:
+        print("Failed to search image", response.text)
+        return None
+
+def save_to_json(data, filename):
+    with open(filename, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
+    print(f"Data saved to {filename}")
+
+if __name__ == "__main__":
+    video_path = './src/videos/video3.mp4'  # Replace with your actual path
+
+    if not os.path.exists(video_path):
+        logging.error("Video file not found.")
+        sys.exit(1)
 
     asyncio.run(process_video(video_path))
 
-    image_path = './main_item_frame.jpg'
+    image_path = './cropped_main_item.jpg'  # Replace with your actual path
+    image_url = upload_image_to_imgbb(image_path, IMG_API_KEY)
+    # open the image in the browser
+    if image_url:
+        os.system(f"start {image_url}")
+
+    # visual_matches = google_lens_search(image_url, SERPAPI_API_KEY)
+    # if visual_matches is not None:
+    #     save_to_json(visual_matches, 'visual_matches.json')
+    else:
+        print("No visual matches found")
 
     sys.exit(0)
