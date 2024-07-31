@@ -5,6 +5,7 @@ import aiohttp
 import asyncio
 import logging
 import sys
+import viewer
 from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
@@ -14,7 +15,6 @@ from collections import Counter, defaultdict
 from sklearn.cluster import KMeans
 import yaml
 import requests
-import base64
 from google_lens_search import google_lens_search
 import upload_image
 # Load environment variables from .env file
@@ -289,8 +289,8 @@ async def process_video(video_path,video):
     else:
         logging.info("No items detected in the video.")
 
-if __name__ == "__main__":
-    video = "video1.mp4"
+
+def main(video):
     video_path = './src/videos/' + video  # Replace with your actual path
 
     if not os.path.exists(video_path):
@@ -301,13 +301,12 @@ if __name__ == "__main__":
     image_url = None
     if not os.path.exists(image_path):
         asyncio.run(process_video(video_path,video))
-        image_url = upload_image.upload_image_to_imgbb(image_path)
-    if image_url:
-        os.system(f"start {image_url}")
+    
+    image_url = upload_image.upload_image_to_imgbb(image_path)
+    return image_url
 
-    visual_match_file = 'visual_matches_'+video.split('.')[0]+'.json'
-
-    # if not os.path.exists(visual_match_file):
-    #     google_lens_search(image_url)
-    # viewer.main(visual_match_file)
-    sys.exit(0)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <video file name>")
+    else:
+        main(sys.argv[1])
