@@ -14,7 +14,6 @@ from collections import Counter, defaultdict
 from sklearn.cluster import KMeans
 import yaml
 import requests
-
 # Load environment variables from .env file
 load_dotenv()
 
@@ -50,7 +49,7 @@ for category in consumer_items.values():
     all_consumer_items.extend(category)
 
 def get_main_item(video_path, model, frame_skip=5):
-    """Get the main item and its color in the video."""
+    """Get the main item and its color in the video, and return the frame with the main item highlighted."""
     logging.info(f"Opening video file: {video_path}")
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -61,6 +60,7 @@ def get_main_item(video_path, model, frame_skip=5):
     object_distances = defaultdict(list)
     color_counts = defaultdict(Counter)
     frame_count = 0
+    main_item_frame = None
     
     while cap.isOpened():
         ret, frame = cap.read()
@@ -97,6 +97,12 @@ def get_main_item(video_path, model, frame_skip=5):
                     item_key = f"{class_name} ({color})"
                     color_counts[class_name][color] += 1
                     object_distances[class_name].append((object_center_x, object_center_y))
+                    
+                    # Save the frame with the detected main item
+                    if main_item_frame is None:
+                        main_item_frame = frame.copy()
+                        cv2.rectangle(main_item_frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                        cv2.putText(main_item_frame, item_key, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
     
     cap.release()
     
@@ -126,7 +132,8 @@ def get_main_item(video_path, model, frame_skip=5):
     
     return {
         "main_item": f"{main_item} ({main_color})",
-        "other_items_summary": other_items_summary
+        "other_items_summary": other_items_summary,
+        "main_item_frame": main_item_frame
     }
 
 def get_color_name(rgb_color):
@@ -245,6 +252,7 @@ async def process_video(video_path):
     if detection_summary:
         main_item = detection_summary["main_item"]
         other_items_summary = detection_summary["other_items_summary"]
+        main_item_frame = detection_summary["main_item_frame"]
         
         logging.info(f"\nMain item detected: {main_item}\n")
         
@@ -254,17 +262,22 @@ async def process_video(video_path):
             colors_str = ', '.join([f"{color}: {weight:.2f}" for color, weight in colors.items()])
             logging.info(f"{item}: {colors_str}")
         
-        products = await search_google(main_item)
-        if products:
-            logging.info("\nProducts found:")
-            for product in products:
-                logging.info(f"Title: {product['title']}\nLink: {product['link']}\nImage: {product['image']}\n")
-            save_images(products)
-        else:
-            logging.info("No products found.")
+        # Save the frame with the main item highlighted
+        if main_item_frame is not None:
+            frame_path = './main_item_frame.jpg'
+            cv2.imwrite(frame_path, main_item_frame)
+            logging.info(f"Main item frame saved to {frame_path}")
+        
+        # products = await search_google(main_item)
+        # if products:
+        #     logging.info("\nProducts found:")
+        #     for product in products:
+        #         logging.info(f"Title: {product['title']}\nLink: {product['link']}\nImage: {product['image']}\n")
+        #     save_images(products)
+        # else:
+        #     logging.info("No products found.")
     else:
         logging.info("No items detected in the video.")
-    sys.exit(0)
 
 if __name__ == "__main__":
     video_path = './src/videos/video1.mp4'  # Replace with your actual path
@@ -272,3 +285,7 @@ if __name__ == "__main__":
     logging.info("Processing video...")
 
     asyncio.run(process_video(video_path))
+
+    image_path = './main_item_frame.jpg'
+
+    sys.exit(0)
