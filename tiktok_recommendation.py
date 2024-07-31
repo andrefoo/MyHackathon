@@ -2,7 +2,9 @@ import torch
 import cv2
 import numpy as np
 import aiohttp
+import viewer
 import json
+import time
 import asyncio
 import logging
 import sys
@@ -254,7 +256,7 @@ def save_images(products):
             except Exception as e:
                 logging.error(f"Error saving image from {image_url}: {e}")
 
-async def process_video(video_path):
+async def process_video(video_path,video):
     """Process the video, identify the main item, and search for the product."""
     model = load_yolo_model()
     detection_summary = get_main_item(video_path, model)
@@ -272,17 +274,11 @@ async def process_video(video_path):
             colors_str = ', '.join([f"{color}: {weight:.2f}" for color, weight in colors.items()])
             logging.info(f"{item}: {colors_str}")
         
-        # Save the frame with the main item highlighted
-        if main_item_frame is not None:
-            frame_path = './main_item_frame.jpg'
-            cv2.imwrite(frame_path, main_item_frame)
-            logging.info(f"Main item frame saved to {frame_path}")
-        
-                # Save the cropped main item
+        # Save the cropped main item
         if main_item_coordinates:
             x1, y1, x2, y2 = main_item_coordinates
             cropped_main_item = main_item_frame[y1:y2, x1:x2]
-            cropped_path = './cropped_main_item.jpg'
+            cropped_path = './cropped_main_item_'+video.split('.')[0]+'.jpg'
             cv2.imwrite(cropped_path, cropped_main_item)
             logging.info(f"Cropped main item saved to {cropped_path}")
         
@@ -335,24 +331,30 @@ def save_to_json(data, filename):
     print(f"Data saved to {filename}")
 
 if __name__ == "__main__":
-    video_path = './src/videos/video3.mp4'  # Replace with your actual path
+    video = "video1.mp4"
+    video_path = './src/videos/' + video  # Replace with your actual path
 
     if not os.path.exists(video_path):
         logging.error("Video file not found.")
         sys.exit(1)
 
-    asyncio.run(process_video(video_path))
+    image_path = './cropped_main_item_'+video.split('.')[0]+'.jpg'
 
-    image_path = './cropped_main_item.jpg'  # Replace with your actual path
-    image_url = upload_image_to_imgbb(image_path, IMG_API_KEY)
+    if not os.path.exists(image_path):
+        asyncio.run(process_video(video_path,video))
+        image_url = upload_image_to_imgbb(image_path, IMG_API_KEY)
     # open the image in the browser
     if image_url:
         os.system(f"start {image_url}")
 
+    viewer.main('visual_matches.json')
+
+    
+
     # visual_matches = google_lens_search(image_url, SERPAPI_API_KEY)
     # if visual_matches is not None:
     #     save_to_json(visual_matches, 'visual_matches.json')
-    else:
-        print("No visual matches found")
+    # else:
+    #     print("No visual matches found")
 
     sys.exit(0)
