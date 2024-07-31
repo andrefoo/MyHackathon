@@ -13,7 +13,7 @@ if __name__ == "__main__":
     image_url = tiktok_recommendation.main(video)
     os.system(f"start {image_url}")
 
-    visual_match_file = 'visual_matches_'+video.split('.')[0]+'.json'
+    visual_match_file = './visual_matches/visual_matches_'+video.split('.')[0]+'.json'
 
     if not os.path.exists(visual_match_file):
         print("Visual matches not found. Searching for visual matches...")

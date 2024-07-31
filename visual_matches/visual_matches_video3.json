@@ -1,0 +1,482 @@
+[
+    {
+        "position": 1,
+        "title": "Web Programming with JavaScript - First edition - YouTube",
+        "link": "https://www.youtube.com/playlist?list=PLEzVk4gzOnwZGAHW0KogzN5FFs2bgN3aq",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtRGisiOLmB5BKtXSMKSjUYjdM1ymoU2eg7mzzb4z43cdqmyhE"
+    },
+    {
+        "position": 2,
+        "title": "A look at Atom text editor for GNU/Linux - gHacks Tech News",
+        "link": "https://www.ghacks.net/2017/08/09/a-look-at-atom-text-editor-for-gnulinux/",
+        "source": "gHacks Technology News",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcSDbBnaNQ_h3Iz6CdWWOV-9Udhgh9IJ16KVeP3lN5UStKK_ey2tLIhl59UO8wsnySxgtzmqTp0jKqGvsamtmBoZMQ1O7vk5T0kiY0zpglulos8H3g",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqBovBM3gWhM_VahitGw-ezOKhL79e0rXAK4qGaPUwQ4oZ4dK"
+    },
+    {
+        "position": 3,
+        "title": "Atom - Download",
+        "link": "https://atom.en.softonic.com/",
+        "source": "Softonic",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcSGV-9z2ur2s0SbUqOxTEnkQVkhtL1tM3LVx_YCmfHklAIzYI2uS5zlV6LLaelfqP05HSAApLFhC9c6fVn7z9wkiWoaJy_msp7CgIpUDbrrYPDiQbzhbPGRqA",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ-4GwX_ZZrEVRprTU40e8oNZnoWP3a9_kM3msnkUQ0XSpskOVP"
+    },
+    {
+        "position": 4,
+        "title": "How To Download and Install Atom IDE on Windows 10 - YouTube",
+        "link": "https://m.youtube.com/watch?v=Y6PoRK0yBLg",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSJqkDeIp4r8E4YFeIN54NKZVcykOisjz373y_DXCUH9RH3jDLetQvWIzlziT1XObIL62pk_3mp2rXzGbH7ZaM9Qz69T0ZFVKCMXgU4Vls709KL",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR8X160HDCunD8Fvck0C7ckJD_TGoLPgamnStm5AuuwG7AXv6CH"
+    },
+    {
+        "position": 5,
+        "title": "The Best Text Editors Compared \u2013 How does VIM stack up? - Make A Website Hub",
+        "link": "https://makeawebsitehub.com/best-text-editors/",
+        "source": "Make A Website Hub",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSK4N399H0KRASwXhbJzZDK3_I7HU98z55HY2YuHKq7Dyf5tV_mNYP6ROD-IlFO-pCuEqPfshJZk-fxpHAcoLKje2S8Gf7KsSsM6Ow5WXXriXyF_OxznZJl",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRDcS90-XCC5wVvHvwpYlru7n3MkDGeBiAQrFGhFmA9Lty8ACIg"
+    },
+    {
+        "position": 6,
+        "title": "Atom vs VSCode - Which is better? | Tangent Technologies",
+        "link": "https://tangenttechnologies.ca/blog/atom-vs-vscode/",
+        "source": "tangenttechnologies.ca",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcS1yg152J2V_xvZGHda89Z-QADZimjA42QWmk1uA1-3JCL3s_UE5JHHjaaWw7htKjHYj2cm2i2kRFpkm21tWIRCp4YdhpqYtQqQQpExHLeMoxEYYCiGTp_BGnwU",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRm80imshIFwhbNACnICV43FXkH2y8Ya1ux74wDGyAsC04PJaB"
+    },
+    {
+        "position": 7,
+        "title": "Introduction | HTML & CSS Is Hard",
+        "link": "https://internetingishard.netlify.app/html-and-css/introduction/",
+        "source": "Netlify",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcQctIqLmYoYE_cyYPed5sirRONFzWm-H7NEp2ha54wtG9rty4xBj_AJw1Hm7EPC9mxDyhUEfjdIqL3y-PowIqTTUEtCv1mIyDAwXxPwESV9l9ykwc6vE6qkDTRoxLPyB80F8g",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcREJbQZUASR0zeLNfOhh105vXz8oEXWdoZkyjyM-nxNinLNB8WS"
+    },
+    {
+        "position": 8,
+        "title": "Taking Ionide Out for a Spin - Inching Forward",
+        "link": "https://inchingforward.com/2015/12/taking-ionide-out-for-a-spin/",
+        "source": "inchingforward.com",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcRK8f8DzIsSIhi_9ad_WZRt3Uw_mByoR6IewnSIN70_1kTAJImO5OtePVbJ1NKfeLxpJ_mIzvVyG2Az3WAv_nCNJQGIw_dQdvhhiik9WGhY4enWwJlntIs",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTbB5hNry8d9crHn0F39TE0gvT2LVHk_4hcQJU-Bvdn1XtkSy86"
+    },
+    {
+        "position": 9,
+        "title": "Install Atom in macOS - YouTube",
+        "link": "https://m.youtube.com/watch?v=M0tp1omPQ-U",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSJqkDeIp4r8E4YFeIN54NKZVcykOisjz373y_DXCUH9RH3jDLetQvWIzlziT1XObIL62pk_3mp2rXzGbH7ZaM9Qz69T0ZFVKCMXgU4Vls709KL",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTWH2wegsVF7fGaX-7KMgP_18yK6QRSBDgUs86GbKqjj5NBwHvq"
+    },
+    {
+        "position": 10,
+        "title": "22 Best Linux Text Editors For Coding {2023 Reviews}",
+        "link": "https://phoenixnap.com/kb/best-linux-text-editors-for-coding",
+        "source": "phoenixNAP",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcS2zVUVmeNqb_sDBNmne8sbLZ4-Wc8LtwFeSyWRNx5BYxcIgxk8HArYfNdkEJReTET7msApjwES_0W3murft0RJofO8oSjg6ZQRP35foTw-ef0pqA",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRfY_tet6KjPrVBnlTyjCN65N2fNPbur2iGgqyU9BNj--ZsYfs6"
+    },
+    {
+        "position": 11,
+        "title": "Install Atom Text Editor as a Snap Package on Ubuntu 20.04 LTS (Focal Fossa) - YouTube",
+        "link": "https://www.youtube.com/watch?v=FuU9XPuCBu8",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRxRKlnj2nint5flkBq5yG3AVByFCxgWuKaCDIcLQ2nK-BKu9Y6"
+    },
+    {
+        "position": 12,
+        "title": "Atom Alternatives for Linux: 25  Text & Code Editors | AlternativeTo",
+        "link": "https://alternativeto.net/software/atom/?platform=linux",
+        "source": "AlternativeTo",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcSudJzubUNZJ2tjjgDtYjxDCatbC6KprbebQrFv5xotr53ZSrbNLPtYD4a_jhyykvF2ORY00zfJ_deBbsCB6OitfgGHAjYp3AxD9vUqHzQKTl4vhSjvvw",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxVbB2KugND2rFIzHJLyLFap7H3bpHbLhrc_O1nPWvmzyeimQW"
+    },
+    {
+        "position": 13,
+        "title": "Using the Atom Editor with Scala - Underscore",
+        "link": "http://underscore.io/blog/posts/2015/11/03/atom.html",
+        "source": "Underscore.io",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcT41UBkvxoZVj8aQDxOYdObEu3Mv29PDwZxWzl7VVGrbAdI72mYTd86v8J6VUG9xIM9q9R23aohi_qlD3Ufmdh3fCJHYgC847trBAdf2vwNkHg",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTv1w838dXhQeuqK7E9-tQJQ1_ltkLVkrSa3vh9zz3Zg9pHPcbD"
+    },
+    {
+        "position": 14,
+        "title": "Can't start Julia through Juno - Juno - Julia Programming Language",
+        "link": "https://discourse.julialang.org/t/cant-start-julia-through-juno/47808",
+        "source": "The Julia Programming Language",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRtKWXg1GAnkIf4Y0FYeOUujVx3OVlf-DegPeSwstvV6krvvstu2hZ1-D4zB7Lx7Aw_TgN3LiEKYLvb-y96RbAtwYpoad3aw9uk2F9cTuh4vV38aYcgi-kTEsYIQA",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRQkHG6p-pDuJFOF4T8gU6zegvCCg2NtrhikQtHaFMzJ7lN9R1u"
+    },
+    {
+        "position": 15,
+        "title": "Adding Atom Beautify Package to Atom - YouTube",
+        "link": "https://www.youtube.com/watch?v=oBz6rXG0XT8",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpNsEiyIijzbWMc42RvcKRARO2k4uuQRfs1IXJYy2h3-sWW5nJ"
+    },
+    {
+        "position": 16,
+        "title": "How to Install Atom on Mac - javatpoint",
+        "link": "https://www.javatpoint.com/how-to-install-atom-on-mac",
+        "source": "Javatpoint",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSVMSA51UTwa_gafeBVJLOZ70h-N9QKD0hhP-p_hr2TFfZODiGZnxmF4b9uIvJQikISDTJuITsBTlm_UZ-nMKySuCfI5Wie9cHSQ6q3FCc19vrX9dWA3rw",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTwXRqYPhJfJYXXCJ73WMYQfcuPuMEnvMAZz2MUgA6vaizQyCt_"
+    },
+    {
+        "position": 17,
+        "title": "How To Push Code To Github - YouTube",
+        "link": "https://www.youtube.com/watch?v=1fcJD5REJQU",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwZO-rWdr0CMrfm6l9D65Pc_8Inl1woCAwirtn0g3rRu_Yw-JG"
+    },
+    {
+        "position": 18,
+        "title": "DYNAMIXEL SDK Walkthrough- Python Example Programming - YouTube",
+        "link": "https://m.youtube.com/watch?v=pZmueNctY0s",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSJqkDeIp4r8E4YFeIN54NKZVcykOisjz373y_DXCUH9RH3jDLetQvWIzlziT1XObIL62pk_3mp2rXzGbH7ZaM9Qz69T0ZFVKCMXgU4Vls709KL",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSd1H_vMk7aZ2A0DQna4WqQPY23VexK-0TyKU3jdTSRCvFqCvIe"
+    },
+    {
+        "position": 19,
+        "title": "Download Development & IT - Software for Mac",
+        "link": "https://en.softonic.com/mac/development",
+        "source": "Softonic",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcRhqqREukgkJUGmuRM62kNnO0_MBal0b33yiDMuD6Eeqx85dkOVxqfrersNyWlJjXb55tmq1flMATBvUfZbE0D-tc-qvfKzh3zoacJH3px7afoC4Wo",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQngfGsq7zzM38s2KW-KNfoVeTOnspK_G3szk-97nxtsbez1M7w"
+    },
+    {
+        "position": 20,
+        "title": "Saying \u2018Hello, World\u2019 in TEI XML | Text and <pointyBrackets/>",
+        "link": "https://www.textandpointybrackets.com/foundational-skills-and-knowledge/saying-hello-world-in-tei-xml",
+        "source": "textandpointybrackets.com",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcSrTHcdWikt8jdQFOsZ8-YQQfAi6coflF1t9oLtyKpli_uaO5eFdYodnmmTSS4POWY_B0PcU9c6ZAZFen57yt5F2JacbRTlQC26fGbpemGUAFrfP41CfbRGU58nxeQOWiNJ_Q",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQTQGbxs7QD6eZgLGv2YKJJZVA23KTWkiV9KVJ9X1QWLBIfpdnh"
+    },
+    {
+        "position": 21,
+        "title": "Manually Install Package in ATOM on Mac - YouTube",
+        "link": "https://www.youtube.com/watch?v=oYT3CuOD6Pg",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZzOkPAvhQjLTv6V3WEcgk0KKFcPRNO37IHs_v0HsJZAnjsW7A"
+    },
+    {
+        "position": 22,
+        "title": "Project Reports | CloudFactory Computer Vision Wiki",
+        "link": "https://wiki.cloudfactory.com/docs/userdocs/projects/project-reports",
+        "source": "CloudFactory",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcTsd9qNlTaM8fBWnrRVozcuuANE6NCwOX-q1Az9v4tiYGyQLmx1Ffj8eCc9O-lX3fYXNB0QO3VNf83Op6rpNro8Zxx8tlSjp6KLa21UEG8_6Fqbo5MEYeaYFOc",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR2CUZKhaOjyQ5Cm9Rs6ePMlH2aPWylRSvo_1rkF04MaFYlBvx0"
+    },
+    {
+        "position": 23,
+        "title": "DYNAMIXEL SDK",
+        "link": "https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/library_setup/python_windows/",
+        "source": "\ub85c\ubcf4\ud2f0\uc988",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcTcmcqEcpZhj1pk-q21N37iPzmxVMaWHb8lMR0Ra9f76utp5c-DsbmVELKp8dk4YiwOirEbedbhg2Wl1Y_GJCD20jhEi_XHKitjMPSc_q87o4OyrSPFKqLp",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSio1oknwAMHIYk1tAylLLnXDZeFvwluz9TyBsGukEZH3Unsc4t"
+    },
+    {
+        "position": 24,
+        "title": "DataChazGPT (not a bot) on X: \"This is moving way too fast! @OpenAI has just announced a new set of plugins for uploading and processing video clips! \ud83e\udd2f And just like that, they made so many SaaS obsolete! https://t.co/PTbpBca5LK\" / X",
+        "link": "https://twitter.com/DataChaz/status/1639002271701692417",
+        "source": "X",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcTobhbt0ZKwS5VFQSzydvQt8vjhhiwervtw9rdJdbWu12RMXaoRjkTltT0aoTWQ6_jjnhnlkM8mMaX4wNSw065V_4Iu62Ljd402sY56ddVX_w",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR2EhzwXt-oI3abfg1_Uz1PMWo1DWfNXfDSvLXpRUvw-DxtC9O1"
+    },
+    {
+        "position": 25,
+        "title": "How to Download and Install ATOM - Dot Net Tutorials",
+        "link": "https://dotnettutorials.net/lesson/how-to-download-and-install-atom/",
+        "source": "Dot Net Tutorials",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcTD3fjM03_BgoXzRYWGb6TFH19kwHUuXDIUOHAzO3_v442TWhgMB2wqd14IMW2C2lHeb74Y2sooJwMkZIq3KHje1j2GIHhso5d-PFwaiFLCsEigWaX6SeVz",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQp4T4v0JrX3iOgyonmXDgnYih3jBMlBC1S9homrCRT0tfAURi8"
+    },
+    {
+        "position": 26,
+        "title": "Shortcut release notes - Shortcut",
+        "link": "https://www.shortcut.com/release-notes",
+        "source": "Shortcut",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcTNFpbK_KlugMTL0Ilwp9oROlnpRcGSEzBCnAlBr0O-AUCmwSvnMfum6-qeUa5rulcG53ZxCyU8IugiPBlBz6hyxPP23efDW4OtTo9brmPPSrTkpuQz",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT42X7Ix4TiwChShm2yyG_jeiMAibuP7ZeDQQVjyTOhsoTkKlam"
+    },
+    {
+        "position": 27,
+        "title": "Best way create a Custom Tumblr.com theme - YouTube",
+        "link": "https://www.youtube.com/watch?v=cGXLmuDPiPc",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT8ouUzrwPfWI15fFE6m1sf8o4_8NqwWmHMrPIlBxsgTV8VEXo0"
+    },
+    {
+        "position": 28,
+        "title": "VsCode Extension Not Work (Still Not Work) \u00b7 Issue #1683 \u00b7 unocss/unocss \u00b7 GitHub",
+        "link": "https://github.com/unocss/unocss/issues/1683",
+        "source": "GitHub",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcQ2jPOBOl2MwpaLgAxiDC3IKIj8W76oY1fNIVHv-9Ya5i3YcFJY1zFS_6s7HOz6W1uHw_6GgDKCjuexIoVmUP4EWKlBQ_tnI9qsMdmI4mIR",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQdN_bG4vscXRhYKTZkN292QkeJh_OaQiFaX-JtOq483r-X-kjq"
+    },
+    {
+        "position": 29,
+        "title": "AWS Instructor Hours: Cloud Technical Essentials - Twitch",
+        "link": "https://www.twitch.tv/aws/clip/SpookyFriendlyGarlicPeteZarollTie-GPKBepZpVbq4nuDO",
+        "source": "Twitch",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTvPo1zuVQ14MzeORdxsjgOzZRBaZRkYYNXeNNlsIdFf_96nU8sfMWU0xGWPv8psy1Osb7zXSaVdvDb6NVfkOzNluf2Qor3qNJPBTDgwezKgJd0",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsRW3JT2V5psF4D7nyyxb4YI_p0_8pi7kXtn5pTmdpDBdLDG1O"
+    },
+    {
+        "position": 30,
+        "title": "WebAssembly - Episode 10 - YouTube",
+        "link": "https://www.youtube.com/watch?v=K56jDripRzw",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgZsNJcUSDMAUnVWzjyQ10NvLY-DhGfkXQEaoaSmjmdVVy7bEo"
+    },
+    {
+        "position": 31,
+        "title": "Best Notepad   Alternatives for Mac [Free and Paid]",
+        "link": "https://www.macupdate.com/best-picks/notepad-plus-plus-alternative-for-mac",
+        "source": "MacUpdate",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcTseF9MTlm2EAeLOfhE_OOW5gquhg2qEmiihZzRojvPUeE591NhmWhj49pA-MsTQshcPrQhtRYbMDpzwUiBPMs2Xc0Fweh8rH3BfR4qp3up18Fp23qevg",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRly4Xl5yoFKXMn10tW87MzB5_QatTygz99vPSMV3nex0sjF6lU"
+    },
+    {
+        "position": 32,
+        "title": "[Video] Jovche Mitrejchevski on LinkedIn: #androiddev #androidstudio #selfimprovement",
+        "link": "https://www.linkedin.com/posts/jovmit_androiddev-androidstudio-selfimprovement-activity-7153004692443136001-46L8",
+        "source": "LinkedIn",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTFMvFisG5Yfyq07VS0hk1otTr6uQvufSrlgYLzmBkZlxd7MQh66ZmKRUOdwfXrertN7RslYSLWGQCDyxLn3JsHLob5z5LPzTRUUQlVmSHaBnVJlJa8",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS0SeM3lX_DRznrX9Coi_1KSF07zyLlPvFSl4CTzjy21aojLArF"
+    },
+    {
+        "position": 33,
+        "title": "CSE3660_LAB5-1 FTP SERVER",
+        "link": "https://kenhan.academic.csusb.edu/CSE3660/pdf/CSE3660_LAB5-1.pdf",
+        "source": "California State University, San Bernardino | CSUSB",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcQwyuF_FoR-eEmBMSXMkzTrgNaKSjFEiVcmtS_BxCNU5rg2EykLh9qKOrh9je6LTafD4px627PLQEQCc_HuP6SOCfpIeXj9n7ezcQkq-sok9efxNOK146RqgkkJeXpR",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQSC-ptv7iNYiUF_A3pzGR9Vsap9o8QclSL-fLCaErCSzcsdEsX"
+    },
+    {
+        "position": 34,
+        "title": "Shortcut | Bring Product and Engineering Together",
+        "link": "https://www.shortcut.com/",
+        "source": "Shortcut",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcTNFpbK_KlugMTL0Ilwp9oROlnpRcGSEzBCnAlBr0O-AUCmwSvnMfum6-qeUa5rulcG53ZxCyU8IugiPBlBz6hyxPP23efDW4OtTo9brmPPSrTkpuQz",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRjagIEhcih7qugRNmNj48lH71uAJIqMmUbhOSWaGD5xyaqrkBl"
+    },
+    {
+        "position": 35,
+        "title": "Solved: Automation: to auto create Jira software tickets f...",
+        "link": "https://community.atlassian.com/t5/Jira-questions/Automation-to-auto-create-Jira-software-tickets-from-JSM/qaq-p/2657352",
+        "source": "Atlassian",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSZjAEMTX8eJBPWGjTLUvfdPZeoqFrdQE66f4DVC78ojOVECAqHZhwKOGGJ8RVF28eWZvwg8FZCkPSjqBskrfypu5eFqhsvvXc1w7ARw6l-3kGK9oyCnI2aUrJIFg",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSnKwY9DCzFuGM5P-SUX82d8BBpKz3us51lcmCXWbJU3CU4qTfu"
+    },
+    {
+        "position": 36,
+        "title": "whyTheHellWouldYouWantThat \u2013 ProgrammerHumor.io",
+        "link": "https://programmerhumor.io/backend-memes/whythehellwouldyouwantthat/",
+        "source": "ProgrammerHumor.io",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcQ254nL87VcqjBFRdAp4Xgr-Ny8mhBleKukcZH6JkaxhVhrhySWHNUbGg8RKgst0M34DMh6iOcGC0vyRgm2oEjZqKNvUzSfiHZGQlucCCQxebcZ-adb5VA",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR-l0FJtL6jZRpSSqk56h2nLBBhm9ABG-Da3zYmnfedd8u7kiTE"
+    },
+    {
+        "position": 37,
+        "title": "Learn with Project - YouTube",
+        "link": "https://www.youtube.com/channel/UCyNNqWbAAv7hdb9aQFt4PSg/videos?view=0&sort=dd&shelf_id=0",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTR8qsGSRhmtuID7__vs2VR4fz-3pObYTJvSnhViOyVpIXhHDim"
+    },
+    {
+        "position": 38,
+        "title": "CREATORS\u2026 COLLABORATIVE VIDEO ASSEMBLY IS HERE! | by Simon Says | Blog | Simon Says A.I. transcription | Medium",
+        "link": "https://medium.com/simon-says-transcription/creators-collaborative-video-assembly-is-here-4aa8c497bd7c",
+        "source": "Medium",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcRWBs_yCHe46wnwYqSYMzlohZesG8HK9hN684DcXkXcUBi1m0tCn0vUhr0s3NsbdPLMxbMgCNZNvpgZjvOQC8qqAbEcExFN3d65XbVI8qr1",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS8n0LJXio3emE8PPBrIrhLtvt40S0dVkikyGGkDwkyNUCNTU59"
+    },
+    {
+        "position": 39,
+        "title": "How to create a .gitignore file in Visual Studio Code | 2024 Tutorial - YouTube",
+        "link": "https://www.youtube.com/watch?v=Y8pt41AJOgY",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS8QbC9ojJoMVu18s6BYe2KUpiSC7_cRWzWGBMp_5vZXV4WJkDE"
+    },
+    {
+        "position": 40,
+        "title": "I tried everything and the h2 element is blue,still not accepting the run test?! - HTML-CSS - The freeCodeCamp Forum",
+        "link": "https://forum.freecodecamp.org/t/i-tried-everything-and-the-h2-element-is-blue-still-not-accepting-the-run-test/388548",
+        "source": "freeCodeCamp",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcQ6jSZNVYOR8iCl6_ADKYhI2RsthraCN_AehAcXaclhE-MbYGzFxZ68cV06bdt0iYovRwNaOB95qtgV4CKonCUpZytHa3sV1RakuI_K9wbWEf6LFDRduvhIso-E",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQQ4eu7Pg1MnP1Sbw5TE2iGZFLfQt1E0hHVVGMprlNC5vgBZfpU"
+    },
+    {
+        "position": 41,
+        "title": "[Video] Mr. Rahul on LinkedIn: Hello everyone ......Here is my 1st task in @CodesOnBytes Python\u2026",
+        "link": "https://www.linkedin.com/posts/mrrahul2020_hello-everyone-here-is-my-1st-task-activity-7122481921183420416-9fYv?trk=public_profile_like_view",
+        "source": "LinkedIn",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTFMvFisG5Yfyq07VS0hk1otTr6uQvufSrlgYLzmBkZlxd7MQh66ZmKRUOdwfXrertN7RslYSLWGQCDyxLn3JsHLob5z5LPzTRUUQlVmSHaBnVJlJa8",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRq3sy7A0L5D2-GjlOfih4wU35opVlMt8DKToaTUdWhuDuE8Ph"
+    },
+    {
+        "position": 42,
+        "title": "The Composer \"why\" or \"depends\" command tells you which other packages depend on a certain package. #php #phpagency #laravel #Symphony #composerphp | Laravel News | Laravel News \u00b7 Original audio | Facebook",
+        "link": "https://m.facebook.com/laravelnews/videos/the-composer-why-or-depends-command-tells-you-which-other-packages-depend-on-a-c/984862882985376/",
+        "source": "Facebook",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcQQuktqCGuJof_VT0qzNf3KGtwmYSbByzTIwFfMIOtbWkc-AM_-SDafTGG9Yw8QT9QRvtR9guasXjLUHhwrRdZHi14bd8OqPJW72zHyV8zcuYLxsQ",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjPZiJNr3xyyVoS8pQ2T4FbfDAELBzJjvRTEGJUsqsqrkpO-yx"
+    },
+    {
+        "position": 43,
+        "title": "Hyperlinks in Custom GPT not linking? - Bugs - OpenAI Developer Forum",
+        "link": "https://community.openai.com/t/hyperlinks-in-custom-gpt-not-linking/565252",
+        "source": "OpenAI",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcQxAYf3hbPyZ6I0NZvBB8cCax_woe_drX8xEgHTDoGlqUURxbY_JR5gscPWXss4mqTAGI09e14yQv7B9J82iJSVxNFtEXG56Mf8L7ep_I4opB9xzlR2V7EjSg",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRjqXNag7nIcl1rZdg-t7yeHRpR1chbk3kxEPq76Zhw-uSEGxrK"
+    },
+    {
+        "position": 44,
+        "title": "Drag and drop \u2014 Tweetboard by J\u00falia Russo on Dribbble",
+        "link": "https://dribbble.com/shots/19820255-Drag-and-drop-Tweetboard",
+        "source": "Dribbble",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcRfyIRgqXHDj3eSsyiM0V_txW9cFxfkharrji9ODLTaWnJDJyGDxvw5JX3n_DU5vijaJaXz4zqzOO0HP-bmiOLZIOQku3taFhZz7WOlAaXZGRE",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ78t0Ii0CUf9TjziJDxJcF1-40KG_QP3_Df7BcqQ9zuMQ-KuaD"
+    },
+    {
+        "position": 45,
+        "title": "ChatGPT Turbo 3.5 Voice BOT with Azure Speech Studio - Code included - Check it out! - YouTube",
+        "link": "https://m.youtube.com/watch?v=IAQYzez7-k4",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSJqkDeIp4r8E4YFeIN54NKZVcykOisjz373y_DXCUH9RH3jDLetQvWIzlziT1XObIL62pk_3mp2rXzGbH7ZaM9Qz69T0ZFVKCMXgU4Vls709KL",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSMD46nBd3T9flJXrdddncVaXgezlSfp7fzA4x6Ym7S3mPgqZJ4"
+    },
+    {
+        "position": 46,
+        "title": "Improved Channel Select Menu for Kbin",
+        "link": "https://greasyfork.org/en/scripts/484196-improved-channel-select-menu-for-kbin",
+        "source": "Greasy Fork",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcRceAQKg6OP6gGZjh45dy_fR9OMPqT9G2ANbdC1riCmq7EjlBvA12_SCw3Gs1rG2tDdftXd8s59J0XrQddy2RptBaWSHss8emDcMJMmlguK2Aho7g",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSRwZjJrSXVQPQsy4tLis8ZL9RKRwdIXmTy9ZdMacUjycWe9W4l"
+    },
+    {
+        "position": 47,
+        "title": "Cursed meme : r/godot",
+        "link": "https://www.reddit.com/r/godot/comments/gmketf/cursed_meme/",
+        "source": "Reddit",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcRFeJS-IhfJCysoVmCqJ1d-1lzbIHTsbcy4DrBsZJpxQ31zznhym7THnNEKCEnngpvdl4aupEFtEblIPBEMJY7_biy055d40m6TYfVg7CpFOrWOXw",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSo5gdCKUZhKNeEEZkq4yJEzbm9ZZKIG67d-B_qkWXIAqJ7sTej"
+    },
+    {
+        "position": 48,
+        "title": "Frontend Mentor | Kanban task management web app | Reactjs | ReduxToolkit coding challenge solution",
+        "link": "https://www.frontendmentor.io/solutions/kanban-task-management-web-app-reactjs-reduxtoolkit-5zErJpERnO",
+        "source": "Frontend Mentor",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRb6E1cmIqSHW_YRRZW7SRHC5AVRqV_Yqi-3ZVGc_rpk8rs3ibsnkwcQTQqL2nai850TFKtI4Mm-SSNa9sgAvF68ZNOjoZtL4TgVV4ybWjcnYHtVtNPK2yPwqg",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4Em_i0XPbq8mQt_Rh_W2iSl6PjqDegUXgDAXNu0iGkY2LfQTG"
+    },
+    {
+        "position": 49,
+        "title": "Markdown Archives - The GitHub Blog",
+        "link": "https://github.blog/tag/markdown/",
+        "source": "The GitHub Blog",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcT4wPa6Tpje2B6o9X8-fWajg-4oDMVEmpdugTI_sNhiLq_fC8jCSSnabBFioNAmwnGJaDv_BSwUs-V1UNoBauFxt-GWmVIGY4p95zT-2ol68Q",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRe_04ASDG50HwyfSgV6hw-qLw4b4YbPMhSQAEn5JZ09uzR95Lm"
+    },
+    {
+        "position": 50,
+        "title": "How to verify and secure your Mastodon account | Snyk",
+        "link": "https://snyk.io/blog/verify-and-secure-your-mastodon-account/",
+        "source": "Snyk",
+        "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcRh6CSKUbqe1qBtEWcDyP_0P1PQh62M-kw3zJMS0VayGdxdpudB-AT--tVbFm6C1VS6KU87loIUIz6VgJuoKv5_tDRGPn5kjBFSyS2o",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR1HKiFipMDM47pfg-nFOMwRCikwKADaTJzM1hROKbrIMz4Idh4"
+    },
+    {
+        "position": 51,
+        "title": "Learn :has and :contains CSS Selectors - YouTube",
+        "link": "https://www.youtube.com/watch?v=Pxw7smb1Vyw",
+        "source": "YouTube",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSa-DxqyS-nxab_1c6Sc10zyxgbimQapdPSB8RcT6llY2qViP28"
+    },
+    {
+        "position": 52,
+        "title": "I built my app in React, React Native and NextJS. Lessons learned. - DEV Community",
+        "link": "https://dev.to/ash_grover/i-built-my-app-in-react-react-native-and-nextjs-lessons-learned-3f38",
+        "source": "DEV Community",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcSQRYRjo6rRDeEwOaYrr8zfImMVmlI3BXXupnqDJb9APJUNVXQUR_ECPJEd7MrgNMDi2ZkWz2U7Ukg8DNNNK2HaNLsmHqhhaPiKpi4",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTDxHe_8gZsNEJHUenWcPXWyupZhYoc23Q2YXxqcSR2ED62tyx1"
+    },
+    {
+        "position": 53,
+        "title": "ChatGPT Bug Exposes Conversation History Titles",
+        "link": "https://hackread.com/chatgpt-bug-conversation-history-titles/",
+        "source": "Hackread",
+        "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcRyeAa7aAVCwe3CT2e9Be80PXDa2v6jEVUyzWsCCcLOHBzblDf7qBQthI-IzGiLj1nnHCznijVFMyekwDuRV_ZolJJwy-hnB3Az4f_Htk9cuj4",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQVOzRnmz6XD0DnybZTL5cKYTSKJYyxfHQ8BSQ3434DbiVY9He2"
+    },
+    {
+        "position": 54,
+        "title": "Get Ahead with ChatGPT\u2019s New Data Analysis Plugin",
+        "link": "https://www.cmswire.com/analytics/chatgpt-advanced-data-analysis-plugin-code-interpreter-upgrades-data-analysis-options-for-marketers/",
+        "source": "CMSWire.com",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcSggUKhgJ3gRvVpQ9rlPHq_b2ONOVR7uDhAGbPoToJbNKMPQdiQ89qZ7u87eRSb659Ul0gk8xSgQmsIfg3cAEoPUSt3YvN7ocCmOqjh1GoKCZ1Bdqg",
+        "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSvXlmtHR4L6GDDAT9umiSJDxWd119a7u3e-PPq5uPDlUR7Pd_b"
+    },
+    {
+        "position": 55,
+        "title": "Chatbot UI - What is it? How does it work? | ListedAI",
+        "link": "https://www.listedai.co/ai/chatbot-ui",
+        "source": "ListedAI",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRTz2nbunENc8RGHxUL2EY4aKzrSjdal2sAKtc5KNIhjOBPDedz4V7PBsQrDJN_r2Kw6U3Pb8reHO3BnGdJxBRTffiHxnsLP-7VOV9pSjLVyCmsmlg",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRLgl8xU2lcThDnsYZBYXqo9JfSlORAZES3nVE5x6yaKp6BAUWf"
+    },
+    {
+        "position": 56,
+        "title": "Andrew Schmelyun on X: \"Dark theme, anyone? https://t.co/lRhGH7jcv2\" / X",
+        "link": "https://x.com/aschmelyun/status/1721142316516438439",
+        "source": "X",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcSofvqtbDtdUTZsANJSe_PTSgsuDSmzMNykD5ePbsMk3EyTY0EoF56jNp_rHuufm9BtNpZYsFhp9M6u-DLxqcg2x-FRa41-OCrNmA",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSaQ7Ubr8MqfnF7dbWeRZHkjMWce5gYmRF9Qyxhu95EVx2bioXM"
+    },
+    {
+        "position": 57,
+        "title": "COMPSCI 260 Python Setup",
+        "link": "https://courses.cs.duke.edu/spring24/compsci260/python.setup/python.html",
+        "source": "Duke University",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRPkYK2-mZuFOz1EeKg-cLtvhiySyPU-GaJB0vTKdfQge_znSnU3LRzUnbWc3mRor16PfyITRhN52556fSsXsVA4J-VdlwqwIrcXEl9PYEDG3C8RE26KzXw",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQQynOQtQ-PxWcoKcXVlvqFiBy_bnlPQs_dlomWFBj9F2aUtEyo"
+    },
+    {
+        "position": 58,
+        "title": "Thomas Wolf on X: \"\u2026yes ok i know the latest iPad ad is horrible, fully agree\u2026 but in other news the OSS lib \u00ab\u00a0lerobot\u00a0\u00bb is at the top of GitHub trending all lang, exciting! https://t.co/vCifTmA6dY\" / X",
+        "link": "https://twitter.com/Thom_Wolf/status/1788270323881894145",
+        "source": "X",
+        "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcTobhbt0ZKwS5VFQSzydvQt8vjhhiwervtw9rdJdbWu12RMXaoRjkTltT0aoTWQ6_jjnhnlkM8mMaX4wNSw065V_4Iu62Ljd402sY56ddVX_w",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzCWZn1poy4AiCQyfLi7F1oCz98_UoccCxfuVr2ffSH2CRni6V"
+    },
+    {
+        "position": 59,
+        "title": "Chatbot UI - Productivity | Explore 10,000  AI Tools & Explore Best Alternatives",
+        "link": "https://www.thaka.io/tools/chatbot-ui",
+        "source": "Thaka.io",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRdU_OKrOHmA3Lyh0c7MLgRQDgGM0vFv5PislUHpHZDHLGSPiOHIKCzfPI4_bdrX5r14O28PIPCuFnf1-alEk-yMS3XxbgSvn_H3lsIAOYMWvI",
+        "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ2WDtO9g5xxMg5ILBpChnDCVx-JPj6f2yAXCAfFzucRyejdA-w"
+    },
+    {
+        "position": 60,
+        "title": "How to toggle two sets of arbitrary tailwind classes for transitions? - Questions / Help - Elixir Programming Language Forum",
+        "link": "https://elixirforum.com/t/how-to-toggle-two-sets-of-arbitrary-tailwind-classes-for-transitions/57049",
+        "source": "Elixir Programming Language Forum",
+        "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcR1390RUReP6JitRd8hVIgWhbf5PW7BO36LFbgTALia85nJu9nY9tuQqbSGP4CU1JyrZbrD4WplJJK1MMNYjJg2YV4QOGn0_e7sDyVgNkePb3F8mJI",
+        "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT_Znp8J045ZMol7AGGlmK-vk5q7GjlumhASpq_fBzgXJ6OLNoi"
+    }
+]

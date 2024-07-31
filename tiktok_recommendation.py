@@ -268,12 +268,18 @@ async def process_video(video_path,video):
         for item, colors in sorted_other_items:
             colors_str = ', '.join([f"{color}: {weight:.2f}" for color, weight in colors.items()])
             logging.info(f"{item}: {colors_str}")
+
+        # Save the frame with the main item highlighted
+        if main_item_frame is not None:
+            frame_path = './main_items/main_item_frame_'+video.split('.')[0]+'.jpg'
+            cv2.imwrite(frame_path, main_item_frame)
+            logging.info(f"Frame with main item saved to {frame_path}")
         
         # Save the cropped main item
         if main_item_coordinates:
             x1, y1, x2, y2 = main_item_coordinates
             cropped_main_item = main_item_frame[y1:y2, x1:x2]
-            cropped_path = './cropped_main_item_'+video.split('.')[0]+'.jpg'
+            cropped_path = './cropped_main_items/cropped_main_item_'+video.split('.')[0]+'.jpg'
             cv2.imwrite(cropped_path, cropped_main_item)
             logging.info(f"Cropped main item saved to {cropped_path}")
         
@@ -296,7 +302,7 @@ def main(video):
         logging.error("Video file not found.")
         sys.exit(1)
 
-    image_path = './cropped_main_item_'+video.split('.')[0]+'.jpg'
+    image_path = './cropped_main_items/cropped_main_item_'+video.split('.')[0]+'.jpg'
     image_url = None
     if not os.path.exists(image_path):
         asyncio.run(process_video(video_path,video))

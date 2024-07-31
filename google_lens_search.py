@@ -18,7 +18,7 @@ if not SERPAPI_API_KEY:
     raise ValueError("SERPAPI_API_KEY must be set in the .env file.")
 
 def save_to_json(data, video):
-    filename = 'visual_matches_'+video.split('.')[0]+'.json'
+    filename = './visual_matches/visual_matches_'+video.split('.')[0]+'.json'
     try:
         with open(filename, 'w') as json_file:
             json.dump(data, json_file, indent=4)
