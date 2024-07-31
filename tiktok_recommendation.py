@@ -2,9 +2,6 @@ import torch
 import cv2
 import numpy as np
 import aiohttp
-import viewer
-import json
-import time
 import asyncio
 import logging
 import sys
@@ -18,13 +15,12 @@ from sklearn.cluster import KMeans
 import yaml
 import requests
 import base64
-
+from google_lens_search import google_lens_search
+import upload_image
 # Load environment variables from .env file
 load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
-IMG_API_KEY = os.getenv('IMG_API_KEY')
-SERPAPI_API_KEY = os.getenv('SERPAPI_API_KEY')
 
 SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 
@@ -293,45 +289,8 @@ async def process_video(video_path,video):
     else:
         logging.info("No items detected in the video.")
 
-def upload_image_to_imgbb(image_path, api_key):
-    url = "https://api.imgbb.com/1/upload"
-    with open(image_path, 'rb') as image_file:
-        encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
-        payload = {
-            'key': api_key,
-            'image': encoded_image
-        }
-        response = requests.post(url, data=payload)
-    
-    if response.status_code == 200:
-        return response.json()['data']['url']
-    else:
-        print("Failed to upload image", response.text)
-        return None
-    
-def google_lens_search(image_url, api_key):
-    url = "https://serpapi.com/search"
-    params = {
-        "engine": "google_lens",
-        "url": image_url,
-        "api_key": api_key
-    }
-
-    response = requests.get(url, params=params)
-    
-    if response.status_code == 200:
-        return response.json().get('visual_matches', [])
-    else:
-        print("Failed to search image", response.text)
-        return None
-
-def save_to_json(data, filename):
-    with open(filename, 'w') as json_file:
-        json.dump(data, json_file, indent=4)
-    print(f"Data saved to {filename}")
-
 if __name__ == "__main__":
-    video = "video2.mp4"
+    video = "video1.mp4"
     video_path = './src/videos/' + video  # Replace with your actual path
 
     if not os.path.exists(video_path):
@@ -339,19 +298,16 @@ if __name__ == "__main__":
         sys.exit(1)
 
     image_path = './cropped_main_item_'+video.split('.')[0]+'.jpg'
-
+    image_url = None
     if not os.path.exists(image_path):
         asyncio.run(process_video(video_path,video))
-        image_url = upload_image_to_imgbb(image_path, IMG_API_KEY)
-        if image_url:
-            os.system(f"start {image_url}")
+        image_url = upload_image.upload_image_to_imgbb(image_path)
+    if image_url:
+        os.system(f"start {image_url}")
+
     visual_match_file = 'visual_matches_'+video.split('.')[0]+'.json'
 
-    if not os.path.exists(visual_match_file):
-        visual_matches = google_lens_search(image_url, SERPAPI_API_KEY)
-        if visual_matches is not None:
-            save_to_json(visual_matches, 'visual_matches_'+video.split('.')[0]+'.json')
-        else:
-            print("No visual matches found")
-    viewer.main(visual_match_file)
+    # if not os.path.exists(visual_match_file):
+    #     google_lens_search(image_url)
+    # viewer.main(visual_match_file)
     sys.exit(0)
