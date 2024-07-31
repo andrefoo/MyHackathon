@@ -16,7 +16,10 @@ if __name__ == "__main__":
     visual_match_file = 'visual_matches_'+video.split('.')[0]+'.json'
 
     if not os.path.exists(visual_match_file):
-        google_lens_search(image_url)
+        print("Visual matches not found. Searching for visual matches...")
+        google_lens_search(image_url, video)
+        print("Visual matches found. Please run the script again.")
     
-    viewer.main(visual_match_file)
+    if os.path.exists(visual_match_file):
+        viewer.main(visual_match_file)
     sys.exit(0)

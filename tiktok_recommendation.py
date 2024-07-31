@@ -5,7 +5,6 @@ import aiohttp
 import asyncio
 import logging
 import sys
-import viewer
 from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
