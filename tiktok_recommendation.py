@@ -331,7 +331,7 @@ def save_to_json(data, filename):
     print(f"Data saved to {filename}")
 
 if __name__ == "__main__":
-    video = "video1.mp4"
+    video = "video2.mp4"
     video_path = './src/videos/' + video  # Replace with your actual path
 
     if not os.path.exists(video_path):
@@ -343,18 +343,15 @@ if __name__ == "__main__":
     if not os.path.exists(image_path):
         asyncio.run(process_video(video_path,video))
         image_url = upload_image_to_imgbb(image_path, IMG_API_KEY)
-    # open the image in the browser
-    if image_url:
-        os.system(f"start {image_url}")
+        if image_url:
+            os.system(f"start {image_url}")
+    visual_match_file = 'visual_matches_'+video.split('.')[0]+'.json'
 
-    viewer.main('visual_matches.json')
-
-    
-
-    # visual_matches = google_lens_search(image_url, SERPAPI_API_KEY)
-    # if visual_matches is not None:
-    #     save_to_json(visual_matches, 'visual_matches.json')
-    # else:
-    #     print("No visual matches found")
-
+    if not os.path.exists(visual_match_file):
+        visual_matches = google_lens_search(image_url, SERPAPI_API_KEY)
+        if visual_matches is not None:
+            save_to_json(visual_matches, 'visual_matches_'+video.split('.')[0]+'.json')
+        else:
+            print("No visual matches found")
+    viewer.main(visual_match_file)
     sys.exit(0)
