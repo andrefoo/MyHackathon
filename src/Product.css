@@ -134,11 +134,3 @@ html {
   padding: 5px;
   border-radius: 50%;
 }
-
-.swipe-container {
-  transition: transform 0.3s ease-in-out;
-}
-
-.swipe-container.swipe-right {
-  transform: translateX(100%);
-}
