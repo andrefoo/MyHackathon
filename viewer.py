@@ -29,18 +29,12 @@ def show_details(event, tree, data, details_frame):
     for widget in details_frame.winfo_children():
         widget.destroy()
     
-    title_label = tk.Label(details_frame, text=f"Title: {item_data[0]}", font=("Helvetica", 16), bg="#f0f0f0", pady=5)
-    title_label.grid(row=0, column=0, sticky='w')
-
-    source_label = tk.Label(details_frame, text=f"Source: {item_data[1]}", font=("Helvetica", 12), pady=5)
-    source_label.grid(row=1, column=0, sticky='w')
+    tk.Label(details_frame, text=f"Title: {item_data[0]}", font=("Helvetica", 16), bg="#f0f0f0", pady=5).grid(row=0, column=0, sticky='w')
+    tk.Label(details_frame, text=f"Source: {item_data[1]}", font=("Helvetica", 12), pady=5).grid(row=1, column=0, sticky='w')
 
     if 'price' in item:
-        price_label = tk.Label(details_frame, text=f"Price: {item_data[2]}", font=("Helvetica", 12), pady=5)
-        price_label.grid(row=2, column=0, sticky='w')
-        
-        stock_label = tk.Label(details_frame, text=f"In Stock: {item_data[3]}", font=("Helvetica", 12), pady=5)
-        stock_label.grid(row=3, column=0, sticky='w')
+        tk.Label(details_frame, text=f"Price: {item_data[2]}", font=("Helvetica", 12), pady=5).grid(row=2, column=0, sticky='w')
+        tk.Label(details_frame, text=f"In Stock: {item_data[3]}", font=("Helvetica", 12), pady=5).grid(row=3, column=0, sticky='w')
     
     url_label = tk.Label(details_frame, text="URL: Click here to view product", font=("Helvetica", 12), fg="blue", cursor="hand2")
     url_label.grid(row=4, column=0, pady=5)
@@ -63,8 +57,7 @@ def main(filepath):
     style.configure("Treeview", font=("Helvetica", 12))
     style.configure("Treeview.Heading", font=("Helvetica", 14, "bold"))
 
-    header = tk.Label(root, text="Product Listings", font=("Helvetica", 20, "bold"), bg="#f8f8f8", pady=10)
-    header.pack(fill=tk.X)
+    tk.Label(root, text="Product Listings", font=("Helvetica", 20, "bold"), bg="#f8f8f8", pady=10).pack(fill=tk.X)
 
     tree_frame = ttk.Frame(root)
     tree_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
@@ -110,8 +103,7 @@ def main(filepath):
     shopping_tree.bind('<<TreeviewSelect>>', lambda event: show_details(event, shopping_tree, shopping_data, details_frame))
     other_tree.bind('<<TreeviewSelect>>', lambda event: show_details(event, other_tree, other_data, details_frame))
 
-    footer = tk.Label(root, text="End of Listings", font=("Helvetica", 12, "italic"), bg="#f8f8f8", pady=10)
-    footer.pack(fill=tk.X)
+    tk.Label(root, text="End of Listings", font=("Helvetica", 12, "italic"), bg="#f8f8f8", pady=10).pack(fill=tk.X)
 
     root.mainloop()
 
