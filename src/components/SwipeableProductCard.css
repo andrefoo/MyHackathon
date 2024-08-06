@@ -61,7 +61,8 @@
 .product-actions {
   display: flex;
   justify-content: space-around;
-  width: 100%;
+
+  width: 80%;
 }
 
 .action-btn {
@@ -85,4 +86,12 @@
 }
 .save {
   color: gold;
+}
+
+.product-icon {
+  width: 100%;        /* Make the image fit the width of its container */
+  height: auto;       /* Maintain the aspect ratio */
+  max-width: 100px;   /* Optional: Set a maximum width if needed */
+  display: block;     /* Ensure the image is displayed as a block element */
+  margin: 0 auto;     /* Center the image horizontally, if needed */
 }

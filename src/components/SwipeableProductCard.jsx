@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSwipeable } from 'react-swipeable';
 import './SwipeableProductCard.css';
+import iconsOng from './icons.ong.png'; // Adjust the path as needed
 
 const SwipeableProductCard = ({ product, onSwipeLeft, onSwipeRight }) => {
   const handlers = useSwipeable({
@@ -27,13 +28,7 @@ const SwipeableProductCard = ({ product, onSwipeLeft, onSwipeRight }) => {
         <p>{product.productDescription}</p>
         <p className="product-price">${product.productPrice}</p>
       </div>
-      <div className="product-actions">
-        <button className="action-btn undo">↺</button>
-        <button className="action-btn dislike">✖</button>
-        <button className="action-btn cart">🛒</button>
-        <button className="action-btn like">❤</button>
-        <button className="action-btn save">🔖</button>
-      </div>
+      <img className="product-actions" src={iconsOng} alt="Icon" />
     </div>
   );
 };
