@@ -4,10 +4,12 @@ import { useSwipeable } from 'react-swipeable';
 import './SwipeableProductCard.css';
 import iconsOng from './icons.ong.png'; // Adjust the path as needed
 
-const SwipeableProductCard = ({ product, onSwipeLeft, onSwipeRight }) => {
+const SwipeableProductCard = ({ product, onSwipeLeft, onSwipeRight, onSwipeUp, onSwipeDown }) => {
   const handlers = useSwipeable({
     onSwipedLeft: () => onSwipeLeft(product),
     onSwipedRight: () => onSwipeRight(product),
+    onSwipedUp: () => onSwipeUp(product),     // Add this line for swiping up
+    onSwipedDown: () => onSwipeDown(product), // Add this line for swiping down
     preventDefaultTouchmoveEvent: false,
     trackMouse: true,
   });
@@ -42,6 +44,8 @@ SwipeableProductCard.propTypes = {
   }).isRequired,
   onSwipeLeft: PropTypes.func.isRequired,
   onSwipeRight: PropTypes.func.isRequired,
+  onSwipeUp: PropTypes.func.isRequired,      // Add this line
+  onSwipeDown: PropTypes.func.isRequired,    // Add this line
 };
 
 export default SwipeableProductCard;

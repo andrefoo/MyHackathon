@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Home.css';
 import VideoCard from './components/VideoCard';
 import BottomNavbar from './components/BottomNavbar';
 import TopNavbar from './components/TopNavbar';
 import SwipeableProductCard from './components/SwipeableProductCard';
 import { items } from './data';
-    
 
 const Home = () => {
   const videoRefs = useRef([]);
+  const [swipedItems, setSwipedItems] = useState([]);
 
   useEffect(() => {
     const observerOptions = {
@@ -59,7 +59,18 @@ const Home = () => {
   };
 
   const handleSwipeRight = (item) => {
-    // Handle swipe right action
+    // Add the item to the swiped items list
+    setSwipedItems((prevSwipedItems) => [...prevSwipedItems, item]);
+  };
+
+  const handleSwipeUp = (item) => {
+    // Handle swipe up action, similar to right swipe
+    handleSwipeRight(item);
+  };
+
+  const handleSwipeDown = (item) => {
+    // Handle swipe down action, similar to right swipe
+    handleSwipeRight(item);
   };
 
   return (
@@ -91,12 +102,22 @@ const Home = () => {
                 product={item}
                 onSwipeLeft={() => handleSwipeLeft(item)}
                 onSwipeRight={() => handleSwipeRight(item)}
+                onSwipeUp={() => handleSwipeUp(item)}       // Add this line
+                onSwipeDown={() => handleSwipeDown(item)}   // Add this line
               />
             );
           }
           return null;
         })}
         <BottomNavbar />
+        <div className="swiped-items">
+          <h2>Swiped Items</h2>
+          <ul>
+            {swipedItems.map((item, index) => (
+              <li key={index}>{item.productName}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
