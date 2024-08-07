@@ -296,7 +296,7 @@ async def process_video(video_path,video):
 
 
 def main(video):
-    video_path = './videos/' + video  # Replace with your actual path
+    video_path = '../videos/' + video  # Replace with your actual path
 
     if not os.path.exists(video_path):
         logging.error("Video file not found.")
