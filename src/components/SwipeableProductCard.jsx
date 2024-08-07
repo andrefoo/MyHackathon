@@ -8,9 +8,9 @@ const SwipeableProductCard = ({ product, onSwipeLeft, onSwipeRight, onSwipeUp, o
   const handlers = useSwipeable({
     onSwipedLeft: () => onSwipeLeft(product),
     onSwipedRight: () => onSwipeRight(product),
-    onSwipedUp: () => onSwipeUp(product),     // Add this line for swiping up
-    onSwipedDown: () => onSwipeDown(product), // Add this line for swiping down
-    preventDefaultTouchmoveEvent: false,
+    onSwipedUp: () => onSwipeUp(product),
+    onSwipedDown: () => onSwipeDown(product),
+    preventDefaultTouchmoveEvent: true, // Ensure default touchmove is prevented
     trackMouse: true,
   });
 
@@ -44,8 +44,8 @@ SwipeableProductCard.propTypes = {
   }).isRequired,
   onSwipeLeft: PropTypes.func.isRequired,
   onSwipeRight: PropTypes.func.isRequired,
-  onSwipeUp: PropTypes.func.isRequired,      // Add this line
-  onSwipeDown: PropTypes.func.isRequired,    // Add this line
+  onSwipeUp: PropTypes.func.isRequired,
+  onSwipeDown: PropTypes.func.isRequired,
 };
 
 export default SwipeableProductCard;

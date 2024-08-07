@@ -55,21 +55,21 @@ const Home = () => {
   };
 
   const handleSwipeLeft = (item) => {
-    // Handle swipe left action
+    console.log(`Swiped left on ${item.productName}`);
   };
 
   const handleSwipeRight = (item) => {
-    // Add the item to the swiped items list
+    console.log(`Swiped right on ${item.productName}`);
     setSwipedItems((prevSwipedItems) => [...prevSwipedItems, item]);
   };
 
   const handleSwipeUp = (item) => {
-    // Handle swipe up action, similar to right swipe
+    console.log(`Swiped up on ${item.productName}`);
     handleSwipeRight(item);
   };
 
   const handleSwipeDown = (item) => {
-    // Handle swipe down action, similar to right swipe
+    console.log(`Swiped down on ${item.productName}`);
     handleSwipeRight(item);
   };
 
@@ -100,10 +100,10 @@ const Home = () => {
               <SwipeableProductCard
                 key={index}
                 product={item}
-                onSwipeLeft={() => handleSwipeLeft(item)}
-                onSwipeRight={() => handleSwipeRight(item)}
-                onSwipeUp={() => handleSwipeUp(item)}       // Add this line
-                onSwipeDown={() => handleSwipeDown(item)}   // Add this line
+                onSwipeLeft={handleSwipeLeft}
+                onSwipeRight={handleSwipeRight}
+                onSwipeUp={handleSwipeUp}
+                onSwipeDown={handleSwipeDown}
               />
             );
           }
