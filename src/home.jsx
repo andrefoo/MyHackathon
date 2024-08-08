@@ -5,10 +5,13 @@ import BottomNavbar from './components/BottomNavbar';
 import TopNavbar from './components/TopNavbar';
 import SwipeableProductCard from './components/SwipeableProductCard';
 import { items } from './data';
+import { initialProducts } from './products'; // Importing products
 
 const Home = () => {
   const videoRefs = useRef([]);
-  const [swipedItems, setSwipedItems] = useState([]);
+  const [products, setProducts] = useState(initialProducts);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [toastMessage, setToastMessage] = useState('');
 
   useEffect(() => {
     const observerOptions = {
@@ -54,23 +57,16 @@ const Home = () => {
     videoRefs.current[index] = ref;
   };
 
-  const handleSwipeLeft = (item) => {
-    console.log(`Swiped left on ${item.productName}`);
+  const handleSwipeLeft = (product) => {
+    setToastMessage(`Removed ${product.productName}`);
+    setTimeout(() => setToastMessage(''), 3000);
+    setProducts((prevProducts) => prevProducts.filter((p) => p !== product));
   };
 
-  const handleSwipeRight = (item) => {
-    console.log(`Swiped right on ${item.productName}`);
-    setSwipedItems((prevSwipedItems) => [...prevSwipedItems, item]);
-  };
-
-  const handleSwipeUp = (item) => {
-    console.log(`Swiped up on ${item.productName}`);
-    handleSwipeRight(item);
-  };
-
-  const handleSwipeDown = (item) => {
-    console.log(`Swiped down on ${item.productName}`);
-    handleSwipeRight(item);
+  const handleSwipeRight = (product) => {
+    setToastMessage(`Liked ${product.productName}`);
+    setTimeout(() => setToastMessage(''), 3000);
+    setProducts((prevProducts) => prevProducts.filter((p) => p !== product));
   };
 
   return (
@@ -95,29 +91,28 @@ const Home = () => {
                 autoplay={index === 0}
               />
             );
-          } else if (item.type === 'product') {
+          } else if (item.type === 'product' && products.length > 0) {
             return (
-              <SwipeableProductCard
-                key={index}
-                product={item}
-                onSwipeLeft={handleSwipeLeft}
-                onSwipeRight={handleSwipeRight}
-                onSwipeUp={handleSwipeUp}
-                onSwipeDown={handleSwipeDown}
-              />
+              <div className="home-container" key={index}>
+                {products.map((product, idx) => (
+                  <div
+                    key={product.productName}
+                    className={`swipeable-card-container ${idx === currentIndex ? 'active' : ''}`}
+                  >
+                    <SwipeableProductCard
+                      product={product}
+                      onSwipeLeft={handleSwipeLeft}
+                      onSwipeRight={handleSwipeRight}
+                    />
+                  </div>
+                ))}
+              </div>
             );
           }
           return null;
         })}
         <BottomNavbar />
-        <div className="swiped-items">
-          <h2>Swiped Items</h2>
-          <ul>
-            {swipedItems.map((item, index) => (
-              <li key={index}>{item.productName}</li>
-            ))}
-          </ul>
-        </div>
+        {toastMessage && <div className="toast">{toastMessage}</div>}
       </div>
     </div>
   );

@@ -20,11 +20,6 @@ export const items = [
   },
   {
     type: 'product',
-    productId: '1',
-    productName: 'Red Leather Handbag',
-    productDescription: 'Crafted with genuine leather. Synthetic lining. Detachable and adjustable shoulder strap. Approx. 20cm*15cm*7cm.',
-    productImage: image1,
-    productPrice: '99.00',
   },
   {
     type: 'video',
@@ -35,16 +30,8 @@ export const items = [
     song: 'tarawarolin wants you to know this isnt my sound - Chaplain J Rob',
     likes: '13.4K',
     comments: 3121,
-    saves: 254,
+    saves: 254, 
     shares: 420,
-  },
-  {
-    type: 'product',
-    productId: '1',
-    productName: 'Red Leather Handbag',
-    productDescription: 'Crafted with genuine leather. Synthetic lining. Detachable and adjustable shoulder strap. Approx. 20cm*15cm*7cm.',
-    productImage: image1,
-    productPrice: '99.00',
   },
   {
     type: 'video',

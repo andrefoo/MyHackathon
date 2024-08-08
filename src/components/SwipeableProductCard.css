@@ -62,7 +62,7 @@
   display: flex;
   justify-content: space-around;
 
-  width: 80%;
+  width: 100%;
 }
 
 .action-btn {
@@ -94,4 +94,15 @@
   max-width: 100px;   /* Optional: Set a maximum width if needed */
   display: block;     /* Ensure the image is displayed as a block element */
   margin: 0 auto;     /* Center the image horizontally, if needed */
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.action-btn img {
+  width: 50px; /* Adjust size as needed */
+  height: 50px; /* Adjust size as needed */
 }
